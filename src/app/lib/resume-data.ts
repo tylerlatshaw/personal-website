@@ -186,6 +186,43 @@ export const internData: jobDataType[] = [
     }
 ];
 
+export const volunteerData: jobDataType[] = [
+    {
+        company: "WebstaurantStore",
+        jobData: [{
+            jobTitle: "College Ambassador Program Team Lead",
+            startDate: new Date("2018-09-25T00:00:00"),
+            endDate: null,
+            jobDetails: [],
+            previousTitle: null
+        }]
+    },
+    {
+        company: "Elizabethtown College",
+        jobData: [{
+            jobTitle: "Alumni Council Vice-President",
+            startDate: new Date("2025-07-01T00:00:00"),
+            endDate: null,
+            jobDetails: [],
+            previousTitle: null
+        },
+        {
+            jobTitle: "Alumni Council Chapters Committee Chair",
+            startDate: new Date("2021-11-04T00:00:00"),
+            endDate: new Date("2025-06-30T00:00:00"),
+            jobDetails: [],
+            previousTitle: null
+        },
+        {
+            jobTitle: "Alumni Council Representative",
+            startDate: new Date("2017-10-21T00:00:00"),
+            endDate: new Date("2025-06-30T00:00:00"),
+            jobDetails: [],
+            previousTitle: null
+        }]
+    },
+];
+
 export type educationDataType = {
     school: companyName,
     degree: string,
