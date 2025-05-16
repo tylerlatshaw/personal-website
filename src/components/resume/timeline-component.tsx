@@ -60,12 +60,12 @@ export function TimelineComponent(company: jobDataType) {
                                 {
                                     job.previousTitle !== null ? job.previousTitle.map((title) =>
                                         <div key={title.jobTitle}>
-                                            <Typography component="span" className="text-md font-light">
+                                            <Typography component="span" className="text-md font-normal text-gray-300">
                                                 {
                                                     title.jobTitle
                                                 }
                                             </Typography>
-                                            <Typography component="span" className="text-md font-light italic text-gray-300">
+                                            <Typography component="span" className="text-md font-normal italic text-gray-400">
                                                 <span className="desktop-only">&nbsp;-&nbsp;</span>
                                                 <br className="mobile-only" />
                                                 {

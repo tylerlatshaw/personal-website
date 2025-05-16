@@ -7,6 +7,7 @@ import SkillList from "../../../components/resume/skills";
 import CertificationList from "../../../components/resume/certifications";
 import JobTimeline from "../../../components/resume/job-timeline";
 import InternTimeline from "../../../components/resume/intern-timeline";
+import VolunteerTimeline from "@/components/resume/volunteer-timeline";
 
 export const metadata: Metadata = {
     title: "Resume",
@@ -56,6 +57,11 @@ export default function Page() {
                 <div className="mx-auto w-full max-w-5xl">
                     <h2>Internship Experience</h2>
                     <InternTimeline />
+                </div>
+
+                <div className="mx-auto w-full max-w-5xl">
+                    <h2>Volunteerism</h2>
+                    <VolunteerTimeline />
                 </div>
 
             </div>
