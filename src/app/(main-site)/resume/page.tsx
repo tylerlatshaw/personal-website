@@ -7,7 +7,7 @@ import SkillList from "../../../components/resume/skills";
 import CertificationList from "../../../components/resume/certifications";
 import JobTimeline from "../../../components/resume/job-timeline";
 import InternTimeline from "../../../components/resume/intern-timeline";
-import VolunteerTimeline from "@/components/resume/volunteer-timeline";
+import VolunteerTimeline from "../../../components/resume/volunteer-timeline";
 
 export const metadata: Metadata = {
     title: "Resume",
