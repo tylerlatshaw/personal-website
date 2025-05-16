@@ -3,6 +3,7 @@ import NextJsIcon from "./icons/next-js";
 import NotionIcon from "./icons/notion";
 import ReactHookFormIcon from "./icons/react-hook-form";
 import ResendIcon from "./icons/resend";
+import SupabaseIcon from "./icons/supabase";
 import TailwindIcon from "./icons/tailwind";
 import TypeScriptIcon from "./icons/typescript";
 
@@ -193,41 +194,39 @@ export const portfolioOptions: portfolioOptionType[] = [
             }
         ]
     },
-    // {
-    //     portfolioSlug: "wordle-analyzer",
-    //     name: "Wordle Analyzer",
-    //     order: 11,
-    //     isFeatured: false,
-    //     description: "Lorem ipsum odor amet, consectetuer adipiscing elit. Eleifend quis vivamus congue risus cras congue felis est. Justo litora donec accumsan varius netus imperdiet eros primis. Quis taciti viverra nulla sem primis. Sodales urna ante molestie tellus; dolor elementum varius. Commodo elit massa lobortis amet turpis neque aliquam a. Vehicula nunc mollis dignissim et felis adipiscing donec taciti. Morbi mauris placerat curabitur torquent vivamus libero magna. Ligula rutrum nam ante quisque hendrerit; purus tempor id.",
-    //     date: new Date("2024-09-15T00:00:00"),
-    //     associatedWith: null,
-    //     // previewLink: filepath + "automate_your_day_preview.png",
-    //     previewLink: "/static/placeholder-image.jpg",
-    //     assetLink: "/static/placeholder-document.pdf",
-    //     // assetLink: filepath + "automate_your_day.pdf",
-    //     webLink: "https://wordle.tylerlatshaw.com/",
-    //     category: "Software Development",
-    //     createdWith: [
-    //         {
-    //             name: "Github",
-    //             icon: GitHubIcon()
-    //         },
-    //         {
-    //             name: "Next.js",
-    //             icon: NextJsIcon()
-    //         },
-    //         {
-    //             name: "TypeScript",
-    //             icon: TypeScriptIcon()
-    //         },
-    //         {
-    //             name: "Tailwind CSS",
-    //             icon: TailwindIcon()
-    //         },
-    //         {
-    //             name: "Resend",
-    //             icon: ResendIcon()
-    //         }
-    //     ]
-    // }
+    {
+        portfolioSlug: "wordle-analyzer",
+        name: "Wordle Analyzer",
+        order: 11,
+        isFeatured: false,
+        description: "Given my love of the word game Wordle, I decided to build a website that will essentially calculate and recommend words to guess based on previously guessed words. The entire system is designed based on an algorithm that parses all possible words, assigns a score to each letter in each character position, and then calculates an overall score for the word. Once a user enters a word and selects any correct, incorrect, or misplaced letters, it will recommend words to guess based on the likelihood of being used. The website is powered via a Supabase Postgres database.",
+        date: new Date("2025-05-01T00:00:00"),
+        associatedWith: null,
+        previewLink: filepath + "wordle_analyzer_preview.png",
+        assetLink: filepath + "wordle_analyzer.pdf",
+        webLink: "https://wordle.tylerlatshaw.com/",
+        category: "Software Development",
+        createdWith: [
+            {
+                name: "Github",
+                icon: GitHubIcon()
+            },
+            {
+                name: "Next.js",
+                icon: NextJsIcon()
+            },
+            {
+                name: "TypeScript",
+                icon: TypeScriptIcon()
+            },
+            {
+                name: "Tailwind CSS",
+                icon: TailwindIcon()
+            },
+            {
+                name: "Supabase",
+                icon: SupabaseIcon()
+            }
+        ]
+    }
 ];
