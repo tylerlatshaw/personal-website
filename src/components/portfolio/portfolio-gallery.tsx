@@ -33,7 +33,7 @@ export default function PortfolioGallery() {
                 <div className={cardStyles}>
                     <div className={infoSection}>
                         <div className="w-full text-center md:text-left">
-                            <span className={"leading-3 text-xl md:text-base xl:text-lg w-full font-semibold hover:text-green-500" + (!isFeatured ? " md:line-clamp-1 md:text-ellipsis" : null)}>{name}</span>
+                            <span className={"leading-3 text-xl md:text-base xl:text-lg w-full font-semibold hover:text-green-500" + (!isFeatured ? " md:line-clamp-1 md:text-ellipsis" : "")}>{name}</span>
                         </div>
                         {
                             createdWith ? <div className="flex flex-col">
