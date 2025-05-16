@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const lastUpdated = "September 01, 2024";
+const lastUpdated = "May 16, 2025";
 
 export function PrivacyPolicyText() {
     return (

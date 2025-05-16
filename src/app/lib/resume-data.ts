@@ -1,4 +1,4 @@
-export const professionalProfile: string = "I am an Advanced Certified ScrumMaster and Senior Technical Business Analyst with more than 5 years of industry experience leading projects, managing development teams, and mentoring others at a multi-billion-dollar company looking to further my career into academic instruction as an adjunct faculty member while maintaining my current position.";
+export const professionalProfile: string = "I am an Advanced Certified ScrumMaster and Senior Technical Business Analyst with more than 8 years of industry experience leading projects, managing development teams, and mentoring others at a multi-billion-dollar company looking to further my career into academic instruction as an adjunct faculty member while maintaining my current position.";
 
 export type companyName = "Best Buy" | "Elizabethtown College" | "Southern New Hampshire University" | "The Home Depot" | "WebstaurantStore"
 
