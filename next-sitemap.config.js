@@ -38,13 +38,6 @@ module.exports = {
         });
 
         result.push({
-            loc: "/portfolio/automate-your-day",
-            changefreq: "yearly",
-            priority: 0.6,
-            lastmod: new Date().toISOString(),
-        });
-
-        result.push({
             loc: "/portfolio/network-assessment",
             changefreq: "yearly",
             priority: 0.6,
@@ -59,6 +52,13 @@ module.exports = {
         });
 
         result.push({
+            loc: "/portfolio/canning-buying-guide",
+            changefreq: "yearly",
+            priority: 0.6,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
             loc: "/portfolio/honors-program-transition",
             changefreq: "yearly",
             priority: 0.6,
@@ -66,7 +66,35 @@ module.exports = {
         });
 
         result.push({
-            loc: "/portfolio/canning-buying-guide",
+            loc: "/portfolio/automate-your-day",
+            changefreq: "yearly",
+            priority: 0.6,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
+            loc: "/portfolio/personal-website",
+            changefreq: "yearly",
+            priority: 0.6,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
+            loc: "/portfolio/days-since-last",
+            changefreq: "yearly",
+            priority: 0.6,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
+            loc: "/portfolio/wordle-analyzer",
+            changefreq: "yearly",
+            priority: 0.6,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
+            loc: "/portfolio/menu-creator",
             changefreq: "yearly",
             priority: 0.6,
             lastmod: new Date().toISOString(),
