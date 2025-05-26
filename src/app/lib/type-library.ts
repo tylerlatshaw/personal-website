@@ -4,6 +4,11 @@ import { TemplateOptions } from "../../components/developer/developer-emails";
 
 // import type { TemplateOptions } from "@/components/developer/email-send-form";
 
+export type ArtistResultType = {
+    id: number,
+    name: string
+}
+
 export type ContactDataType = {
     name: string,
     email: string,
@@ -15,22 +20,32 @@ export type ContactDataType = {
     title?: string
 }
 
+export type ContactResultType = {
+    id: number,
+    createdAt: Date,
+    modifiedAt: Date,
+    name: string,
+    email: string,
+    message: string,
+    referringPage: string,
+    formSource: string
+}
+
+export type CurrentlyReadingResultType = {
+    id: number,
+    createdAt: Date,
+    modifiedAt: Date,
+    name: string,
+    author: string,
+    percentComplete: number,
+    imageUrl: string
+}
+
 export type DeveloperItemType = {
     title: string,
     content: JSX.Element,
     index: number
 }
-
-// export type EmailDataType = {
-//     date: string,
-//     dateTime: string,
-//     title: string,
-//     name: string,
-//     email: string,
-//     message: string,
-//     referringPage: string,
-//     source: string
-// }
 
 export type EmailFormType = {
     selection: TemplateOptions
@@ -50,6 +65,11 @@ export type FooterSocialType = {
     icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>
 }
 
+export type GenreResultType = {
+    id: number,
+    name: string
+}
+
 export type IconLookupType = {
     display: string
     icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>
@@ -61,4 +81,16 @@ export type NavigationLinkType = {
     filepath: string,
     changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never",
     priority: number,
+}
+
+export type RecordResultType = {
+    id: number,
+    createdAt: Date,
+    modifiedAt: Date,
+    name: string,
+    artist: ArtistResultType,
+    genres: GenreResultType[],
+    year: number,
+    imageUrl: string,
+    discogsUrl: string
 }

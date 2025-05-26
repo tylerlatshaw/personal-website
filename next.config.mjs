@@ -4,6 +4,9 @@ const nextConfig = {
         remotePatterns: [{
             protocol: "https",
             hostname: "*.amazonaws.com",
+        }, {
+            protocol: "https",
+            hostname: "*.ssl-images-amazon.com",
         }],
     },
 };

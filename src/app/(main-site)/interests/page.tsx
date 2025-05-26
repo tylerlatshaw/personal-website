@@ -1,26 +1,23 @@
-import { Suspense } from "react";
+import InterestsContainer from "@/components/interests/page-container";
 import { Metadata } from "next";
-import VinylRecordContainer from "../../../components/interests/vinyl-record-container";
-import VinylRecordLoading from "../../../components/interests/vinyl-record-loading";
 
 export const metadata: Metadata = {
     title: "My Interests",
 };
 
 export default function Page() {
+
     return <>
         <div className="h-full px-4 md:px-0 mb-16 md:mb-40">
             <div className="container flex flex-wrap mx-auto pt-28 md:pt-36">
 
                 <h1>My Interests</h1>
 
-                <section className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 p-2 w-full">
+                <div className="flex w-3/5 mx-auto mb-8">
+                    <p className="text-center text-lg">Welcome to the part of my site where I pretend to be cultured. Below is a list of vinyl records I own (because Amazon Music just isn&apos;t pretentious enough) and books I&apos;m <i>definitely</i> going to finish someday.</p>
+                </div>
 
-                    <Suspense fallback={<VinylRecordLoading />}>
-                        <VinylRecordContainer />
-                    </Suspense>
-
-                </section>
+                <InterestsContainer />
 
             </div>
         </div>
