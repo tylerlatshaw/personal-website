@@ -1,7 +1,6 @@
 import AWSIcon from "./icons/aws";
 import ClerkIcon from "./icons/clerk";
 import NextJsIcon from "./icons/next-js";
-import NotionIcon from "./icons/notion";
 import ReactHookFormIcon from "./icons/react-hook-form";
 import ReactPdfIcon from "./icons/react-pdf";
 import ResendIcon from "./icons/resend";
@@ -158,7 +157,7 @@ export const portfolioOptions: portfolioOptionType[] = [
         name: "My Personal Website/Portfolio",
         order: 10,
         isFeatured: true,
-        description: "Welcome to my personal website! This site is a showcase of my journey, built using Next.js, TypeScript, and Notion as the database. As someone who started with no prior coding experience, I've embraced the challenge of learning these technologies from scratch. Each project, report, and presentation featured here reflects my growth and dedication in mastering mordern technology and IT. For this website, I used Next.js for the site structure and API routing, Tailwind CSS for the styling, and Notion as the database - all of which were new to me coming into this project. The website is deployed through Netlify via a GitHub repository.",
+        description: "Welcome to my personal website! This site is a showcase of my journey, built using Next.js, TypeScript, and Supabase as the database. As someone who started with no prior (modern) web development experience, I've embraced the challenge of learning these technologies from scratch. Each project, report, and presentation featured here reflects my growth and dedication in mastering mordern technology and IT. For this website, I used Next.js for the site structure and API routing, Tailwind CSS for the styling, and Supabase as the database - all of which were new to me coming into this project. The website is deployed through Netlify via a GitHub repository.",
         date: new Date("2024-09-15T00:00:00"),
         associatedWith: null,
         previewLink: filepath + "personal_website_preview.png",
@@ -179,8 +178,8 @@ export const portfolioOptions: portfolioOptionType[] = [
                 icon: TailwindIcon()
             },
             {
-                name: "Notion",
-                icon: NotionIcon()
+                name: "Supabase",
+                icon: SupabaseIcon()
             },
             {
                 name: "React Hook Form",

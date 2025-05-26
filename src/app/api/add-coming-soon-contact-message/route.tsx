@@ -3,9 +3,9 @@ import { Resend } from "resend";
 import MessageReceived from "../../../components/emails/new-message-received";
 import ComingSoonOnList from "../../../components/emails/coming-soon-on-the-list";
 import { getCurrentDate, getCurrentDateTime } from "../../../utilities/date-utilities";
-import { addContactMessage, getContactMessagesByEmail } from "../../../utilities/notion-client";
+import supabase from "./../../../utilities/supabase";
 
-import type { ContactDataType } from "../../lib/type-library";
+import type { ContactDataType, ContactResultType } from "../../lib/type-library";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromAddress = process.env.RESEND_FROM;
@@ -21,10 +21,33 @@ export async function POST(request: Request) {
         referringPage
     } = await request.json() as ContactDataType;
 
-    const contact = await getContactMessagesByEmail(undefined, email);
+    try {
+        const results: ContactResultType[] = [];
+        const { data } = await supabase.from("ContactMessages").select().eq("email", email);
 
-    if (contact.results.length > 0) {
-        return NextResponse.json("You're already on the list!");
+        data?.forEach((item) => {
+            results.push({
+                id: item.id,
+                createdAt: new Date(item.created_at),
+                modifiedAt: new Date(item.modified_at),
+                name: item.name,
+                email: item.email,
+                message: item.message,
+                referringPage: item.referring_page,
+                formSource: item.form_source
+            });
+        });
+
+        const unfilteredData = results.filter((item) => {
+            return item.formSource === "Coming Soon";
+        });
+
+        if (unfilteredData.length > 0) {
+            return NextResponse.json("You're already on the list!");
+        }
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        return new NextResponse("Error fetching data");
     }
 
     const date = getCurrentDate();
@@ -44,14 +67,12 @@ export async function POST(request: Request) {
 
     try {
         await Promise.all([
-            addContactMessage(messageData),
-            resend.emails.send({
-                from: `${fromAddress}`,
-                to: email,
-                bcc: `${myEmailAddress}`,
-                subject: "You're on the list! ✅",
-                text: "",
-                react: <ComingSoonOnList messageData={{ ...messageData, title: "You're on the list!" }} />,
+            supabase.from("ContactMessages").insert({
+                "name": name,
+                "email": email,
+                "message": message,
+                "form_source": source,
+                "referring_page": referringPage
             }),
             resend.emails.send({
                 from: `${fromAddress}`,
@@ -60,6 +81,14 @@ export async function POST(request: Request) {
                 subject: "New Contact Form Submission: " + email,
                 text: "",
                 react: <MessageReceived messageData={{ ...messageData, title: "New Contact Form Submission" }} />,
+            }),
+            resend.emails.send({
+                from: `${fromAddress}`,
+                to: email,
+                bcc: `${myEmailAddress}`,
+                subject: "You're on the list! ✅",
+                text: "",
+                react: <ComingSoonOnList messageData={{ ...messageData, title: "You're on the list!" }} />,
             })
         ]);
 

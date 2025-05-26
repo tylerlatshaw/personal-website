@@ -1,21 +1,42 @@
 import { NextResponse } from "next/server";
-import { getRecords } from "../../../utilities/notion-client";
-
-import type { RecordResponseType, RecordResultType } from "../../lib/notion-type-library";
-
-export const revalidate = 60;
+import supabase from "./../../../utilities/supabase";
+import { RecordResultType } from "../../lib/type-library";
 
 export async function GET() {
-    var start_cursor;
-    var has_more = true;
-    const sanitizedResults: RecordResultType[] = [];
+    try {
+        const results: RecordResultType[] = [];
+        const { data } = await supabase.from("Records").select(`
+            id,
+            created_at,
+            modified_at,
+            name,
+            artist_id,
+            year,
+            image_url,
+            discogs_url,
+            Artists(id, name),
+            RecordsToGenres(Genres(id, name))
+        `);
 
-    do {
-        const response = await getRecords(start_cursor!) as unknown as RecordResponseType;
-        sanitizedResults.push(...response.results);
+        data?.forEach((item) => {
+            results.push({
+                id: item.id,
+                createdAt: new Date(item.created_at),
+                modifiedAt: new Date(item.modified_at),
+                name: item.name,
+                artist: item.Artists,
+                genres: item.RecordsToGenres.map((genre) => {
+                    return genre.Genres;
+                }),
+                year: item.year,
+                imageUrl: item.image_url,
+                discogsUrl: item.discogs_url
+            });
+        });
 
-        response.has_more ? start_cursor = response.next_cursor : has_more = false;
-    } while (has_more);
-
-    return NextResponse.json(sanitizedResults);
+        return NextResponse.json(results);
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        return new NextResponse("Error fetching data");
+    }
 }

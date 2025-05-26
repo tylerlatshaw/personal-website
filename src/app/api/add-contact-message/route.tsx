@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import MessageReceived from "../../../components/emails/new-message-received";
 import ThankYouEmail from "../../../components/emails/thank-you-email";
 import { getCurrentDate, getCurrentDateTime } from "../../../utilities/date-utilities";
-import { addContactMessage } from "../../../utilities/notion-client";
+import supabase from "./../../../utilities/supabase";
 
 import type { ContactDataType } from "../../lib/type-library";
 
@@ -38,14 +38,12 @@ export async function POST(request: Request) {
 
     try {
         await Promise.all([
-            addContactMessage(messageData),
-            resend.emails.send({
-                from: `${fromAddress}`,
-                to: email,
-                bcc: `${myEmailAddress}`,
-                subject: "Thanks for reaching out!",
-                text: "",
-                react: <ThankYouEmail messageData={{ ...messageData, title: "I'll be in touch soon! ✉️" }} />,
+            supabase.from("ContactMessages").insert({
+                "name": name,
+                "email": email,
+                "message": message,
+                "form_source": source,
+                "referring_page": referringPage
             }),
             resend.emails.send({
                 from: `${fromAddress}`,
@@ -54,6 +52,14 @@ export async function POST(request: Request) {
                 subject: "New Contact Form Submission: " + email,
                 text: "",
                 react: <MessageReceived messageData={{ ...messageData, title: "New Contact Form Submission" }} />,
+            }),
+            resend.emails.send({
+                from: `${fromAddress}`,
+                to: email,
+                bcc: `${myEmailAddress}`,
+                subject: "Thanks for reaching out!",
+                text: "",
+                react: <ThankYouEmail messageData={{ ...messageData, title: "I'll be in touch soon! ✉️" }} />,
             })
         ]);
 

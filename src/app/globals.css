@@ -638,6 +638,21 @@ input:-webkit-autofill:active {
 
 /*******************************/
 /*****
+/*****    INTERESTS 
+/*****
+/*******************************/
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: var(--green-600);
+}
+
+.MuiLinearProgress-root {
+  background-color: var(--green-100);
+}
+
+
+/*******************************/
+/*****
 /*****    CONTACT ME PAGE 
 /*****
 /*******************************/
