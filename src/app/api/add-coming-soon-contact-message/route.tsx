@@ -25,7 +25,7 @@ export async function POST(request: Request) {
         const results: ContactResultType[] = [];
         const { data } = await supabase.from("ContactMessages").select().eq("email", email);
 
-        data?.forEach((item) => {
+        data?.forEach((item: any) => {
             results.push({
                 id: item.id,
                 createdAt: new Date(item.created_at),
