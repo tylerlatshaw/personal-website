@@ -1,20 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 
+import { useEffect, useState } from "react";
 import { CurrentlyReadingResultType } from "./../../app/lib/type-library";
 import { LinearProgress } from "@mui/material";
+import axios from "axios";
+import CurrentlyReadingLoading from "./currently-reading-loading";
 
 export default function CurrentlyReadingContainer() {
 
-    async function getData() {
-        const res = await fetch(process.env.BASE_URL + "/api/get-currently-reading");
-        const data = await res.json();
+    const [data, setData] = useState<CurrentlyReadingResultType[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
-        return data;
-    }
+    useEffect(() => {
+        try {
+            axios.get("/api/get-currently-reading").then((response) => {
+                setData(response.data);
+                setLoading(false);
+            });
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }
+    }, []);
 
-    async function generateCards() {
-        const data: CurrentlyReadingResultType[] = await getData();
-
+    function generateCards() {
         const sortedData = data.sort((a, b) => {
             if (a.createdAt > b.createdAt)
                 return 1;
@@ -43,9 +52,7 @@ export default function CurrentlyReadingContainer() {
         });
     }
 
-
     return <>
-        {generateCards()}
+        {loading ? <CurrentlyReadingLoading /> : generateCards()}
     </>;
-
 }
