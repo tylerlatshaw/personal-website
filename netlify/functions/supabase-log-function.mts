@@ -26,11 +26,11 @@ export default async () => {
         (a.createdAt < b.createdAt) ? 1 : -1
     );
 
-    var bookTitles;
+    var bookTitles = "";
 
-    sortedData.forEach(book => {
+    for (const book of sortedData) {
         bookTitles += book.name + "; ";
-    });
+    }
 
     const postRequest = await setData({ totalBooks: data.length, bookList: bookTitles });
 

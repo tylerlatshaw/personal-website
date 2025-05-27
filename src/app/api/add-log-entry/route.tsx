@@ -13,7 +13,7 @@ export async function POST(request: Request) {
         const entryText = "Current Number of Books Stored: " + logEntry.totalBooks + " Book List: " + logEntry.bookList;
 
         const { data, error } = await supabase
-            .from("TableLog")
+            .from("table_log")
             .insert({
                 "log_entry": entryText
             })

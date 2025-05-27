@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
     try {
         const results: ContactResultType[] = [];
-        const { data } = await supabase.from("ContactMessages").select().eq("email", email);
+        const { data } = await supabase.from("contact_messages").select().eq("email", email);
 
         data?.forEach((item: any) => {
             results.push({
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
 
     try {
         await Promise.all([
-            supabase.from("ContactMessages").insert({
+            supabase.from("contact_messages").insert({
                 "name": name,
                 "email": email,
                 "message": message,
