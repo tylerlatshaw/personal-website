@@ -5,7 +5,7 @@ import { RecordResultType } from "../../lib/type-library";
 export async function GET() {
     try {
         const results: RecordResultType[] = [];
-        const { data } = await supabase.from("Records").select(`
+        const { data } = await supabase.from("records").select(`
             id,
             created_at,
             modified_at,
@@ -14,8 +14,8 @@ export async function GET() {
             year,
             image_url,
             discogs_url,
-            Artists(id, name),
-            RecordsToGenres(Genres(id, name))
+            artists(id, name),
+            records_to_genres(genres(id, name))
         `);
 
         data?.forEach((item) => {
@@ -24,9 +24,9 @@ export async function GET() {
                 createdAt: new Date(item.created_at),
                 modifiedAt: new Date(item.modified_at),
                 name: item.name,
-                artist: item.Artists,
-                genres: item.RecordsToGenres.map((genre) => {
-                    return genre.Genres;
+                artist: item.artists,
+                genres: item.records_to_genres.map((genre) => {
+                    return genre.genres;
                 }),
                 year: item.year,
                 imageUrl: item.image_url,

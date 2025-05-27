@@ -5,7 +5,7 @@ import { CurrentlyReadingResultType } from "../../lib/type-library";
 export async function GET() {
     try {
         const results: CurrentlyReadingResultType[] = [];
-        const { data } = await supabase.from("CurrentlyReading").select();
+        const { data } = await supabase.from("currently_reading").select();
 
         data?.forEach((item) => {
             results.push({

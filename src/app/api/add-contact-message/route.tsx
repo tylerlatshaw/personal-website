@@ -38,7 +38,7 @@ export async function POST(request: Request) {
 
     try {
         await Promise.all([
-            supabase.from("ContactMessages").insert({
+            supabase.from("contact_messages").insert({
                 "name": name,
                 "email": email,
                 "message": message,

@@ -9,7 +9,7 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      Artists: {
+      artists: {
         Row: {
           created_at: string
           id: number
@@ -30,7 +30,7 @@ export type Database = {
         }
         Relationships: []
       }
-      ContactMessages: {
+      contact_messages: {
         Row: {
           created_at: string
           email: string
@@ -63,7 +63,7 @@ export type Database = {
         }
         Relationships: []
       }
-      CurrentlyReading: {
+      currently_reading: {
         Row: {
           author: string
           created_at: string
@@ -93,7 +93,7 @@ export type Database = {
         }
         Relationships: []
       }
-      Genres: {
+      genres: {
         Row: {
           created_at: string
           id: number
@@ -114,7 +114,7 @@ export type Database = {
         }
         Relationships: []
       }
-      Records: {
+      records: {
         Row: {
           artist_id: number
           created_at: string
@@ -150,12 +150,12 @@ export type Database = {
             foreignKeyName: "Records_artist_id_fkey"
             columns: ["artist_id"]
             isOneToOne: false
-            referencedRelation: "Artists"
+            referencedRelation: "artists"
             referencedColumns: ["id"]
           },
         ]
       }
-      RecordsToGenres: {
+      records_to_genres: {
         Row: {
           created_at: string
           genre_id: number
@@ -182,19 +182,19 @@ export type Database = {
             foreignKeyName: "RecordsToGenres_genre_id_fkey"
             columns: ["genre_id"]
             isOneToOne: false
-            referencedRelation: "Genres"
+            referencedRelation: "genres"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "RecordsToGenres_record_id_fkey"
             columns: ["record_id"]
             isOneToOne: false
-            referencedRelation: "Records"
+            referencedRelation: "records"
             referencedColumns: ["id"]
           },
         ]
       }
-      TableLog: {
+      table_log: {
         Row: {
           created_at: string
           id: number
