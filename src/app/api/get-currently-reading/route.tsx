@@ -19,7 +19,13 @@ export async function GET() {
             });
         });
 
-        return NextResponse.json(results);
+        // Disable caching
+        return new NextResponse(JSON.stringify(results), {
+            status: 200,
+            headers: {
+                "Cache-Control": "no-store",
+            },
+        });
     } catch (error) {
         console.error("Error fetching data: ", error);
         return new NextResponse("Error fetching data");
