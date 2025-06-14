@@ -5,6 +5,8 @@ export const metadata: Metadata = {
     title: "My Interests",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
 
     return <>
