@@ -3,6 +3,7 @@ import { RecordResultType } from "./../../app/lib/type-library";
 
 export default async function VinylRecordContainer() {
 
+    const imageFilepath = process.env.SUPABASE_URL + "/storage/v1/object/public/personal-website-storage/records/";
     const response = await fetch(process.env.BASE_URL + "/api/get-records", { cache: "no-store" });
     const data: RecordResultType[] = await response.json();
 
@@ -17,7 +18,7 @@ export default async function VinylRecordContainer() {
         return sortedData && sortedData.map((record) => {
             return <div key={record.id}>
                 <div className="flex items-stretch bg-gray-900 shadow-lg shadow-gray-800/80 rounded p-3 flex flex-1 flex-col justify-between w-100">
-                    <img src={"/static/interests/" + record.imageUrl} alt={record.name} className="aspect-square w-full rounded" />
+                    <img src={imageFilepath + record.imageUrl} alt={record.name} className="aspect-square w-full rounded" />
                 </div>
                 <div className="px-1 pt-2 pb-4 mx-auto text-center">
                     <div className="space-y-1">
