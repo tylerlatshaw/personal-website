@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import * as Sentry from "@sentry/nextjs";
 
 const description = "Tyler Latshaw is a professionally-certified Scrum Master with years of experience in project management, web design, leadership, and mentoring.";
 
@@ -36,6 +37,9 @@ export const metadata: Metadata = {
     description: description,
     creator: "@tylerlatshaw",
     images: ["tps://tylerlatshaw.com/static/tyler-latshaw-meta-cover.png"]
+  },
+  other: {
+    ...Sentry.getTraceData()
   }
 };
 
