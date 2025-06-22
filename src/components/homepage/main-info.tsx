@@ -15,7 +15,7 @@ export default function MainInfoSection() {
             </div>
 
             <div className="w-full xl:w-3/5 p-6 sm:p-12">
-                <Image src="/static/homepage/homepage-headshot.png" width={709} height={421} alt="Tyler Latshaw" className={"homepage-main-image mx-auto w-full md:w-4/5 transform -rotate-3 transition hover:scale-105 duration-700 ease-in-out hover:rotate-3 homepage-main-image-blue"} id="homepage-main-image" priority={true} />
+                <Image src="/static/homepage/homepage-headshot.webp" width={709} height={421} alt="Tyler Latshaw" className={"homepage-main-image mx-auto w-full md:w-4/5 transform -rotate-3 transition hover:scale-105 duration-700 ease-in-out hover:rotate-3 homepage-main-image-blue"} id="homepage-main-image" priority={true} />
             </div>
         </>
     );
