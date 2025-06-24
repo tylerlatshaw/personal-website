@@ -4,6 +4,8 @@ import * as Sentry from "@sentry/nextjs";
 
 const description = "Tyler Latshaw is a professionally-certified Scrum Master with years of experience in project management, web design, leadership, and mentoring.";
 
+const GA_ID = process.env.GA_ID;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://tylerlatshaw.com/"),
   alternates: {
@@ -55,7 +57,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </head>
       {children}
-      <GoogleAnalytics gaId="G-T00M68FVN7" />
+      <GoogleAnalytics gaId={GA_ID!} />
     </html>
   );
 }
