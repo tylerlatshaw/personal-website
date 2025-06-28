@@ -48,7 +48,6 @@ export async function POST(request: Request) {
             resend.emails.send({
                 from: `${fromAddress}`,
                 to: `${myEmailAddress}`,
-                bcc: `${myEmailAddress}`,
                 subject: "New Contact Form Submission: " + email,
                 text: "",
                 react: <MessageReceived messageData={{ ...messageData, title: "New Contact Form Submission" }} />,
@@ -56,7 +55,6 @@ export async function POST(request: Request) {
             resend.emails.send({
                 from: `${fromAddress}`,
                 to: email,
-                bcc: `${myEmailAddress}`,
                 subject: "Thanks for reaching out!",
                 text: "",
                 react: <ThankYouEmail messageData={{ ...messageData, title: "I'll be in touch soon! ✉️" }} />,
