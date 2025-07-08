@@ -15,6 +15,7 @@ export async function GET() {
                 name: item.name,
                 author: item.author,
                 percentComplete: item.percent_complete,
+                dateCompleted: item.date_completed ? new Date(item.date_completed!) : null,
                 imageUrl: item.image_url
             });
         });
