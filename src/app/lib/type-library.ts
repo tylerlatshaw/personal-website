@@ -38,6 +38,7 @@ export type CurrentlyReadingResultType = {
     name: string,
     author: string,
     percentComplete: number,
+    dateCompleted: Date | null,
     imageUrl: string
 }
 
