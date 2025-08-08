@@ -10,7 +10,7 @@ export default function SkillList() {
                 <div className="flex flex-row flex-wrap gap-3 w-full mx-1 md:mx-3 basis-auto justify-center">
                     {
                         skills.map((skill) =>
-                            <Chip key={skill} label={skill} className="text-white bg-gray-800 font-normal text-base tracking-wide px-1 shadow-md shadow-gray-900" />
+                            <Chip key={skill} label={skill} className="!text-white !bg-gray-800 !font-normal !text-base !tracking-wide !px-1 !shadow-md !shadow-gray-900" />
                         )
                     }
                 </div>

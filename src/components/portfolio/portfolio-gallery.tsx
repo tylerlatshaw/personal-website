@@ -7,7 +7,7 @@ import { Button, SvgIcon, Tooltip } from "@mui/material";
 
 export default function PortfolioGallery() {
 
-    const categories: portfolioCategories[] = ["Reports", "Presentations", "Software Development"];
+    const categories: portfolioCategories[] = ["Reports", "Software Development", "Presentations"];
 
     function createPortfolioCard(portfolioItem: portfolioOptionType) {
 
@@ -73,7 +73,7 @@ export default function PortfolioGallery() {
                         {
                             categories.map((category) => {
                                 return (<div key={category}>
-                                    <Button href={"#" + category} className="px-4 py-2 bg-blue-800 hover:bg-blue-900 shadow-md shadow-gray-800 text-white normal-case text-base font-semibold rounded">{category}</Button>
+                                    <Button href={"#" + category} className="button !w-fit !flex !items-center !bg-blue-800 hover:!bg-blue-900 !drop-shadow-xl !shadow-gray-800 !rounded-2xl !text-white !text-center !text-md !font-semibold !px-3 !py-1.5">{category}</Button>
                                 </div>);
                             })
                         }

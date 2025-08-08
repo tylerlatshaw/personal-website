@@ -10,7 +10,7 @@ export default function CertificationsList() {
 
         return <>
             {
-                <Card className="justify-between bg-gray-800 shadow-xl shadow-gray-900/70 rounded-lg">
+                <Card className="!justify-between !bg-gray-800 !shadow-xl !shadow-gray-900/70 !rounded-lg">
                     <div className="p-4 text-white">
                         <div className="flex justify-center">
                             <Image src={logo} width={165} height={150} alt={altText} className="drop-shadow-[0_0_24px_rgb(255,255,255,0.3)] group-hover:drop-shadow-[0_0_24px_rgb(255,255,255,0.5)]" />

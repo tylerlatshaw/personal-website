@@ -91,7 +91,7 @@ export default function FormContact() {
                 <span className={spanStyles}></span>
             </div>
             <div className="flex items-center">
-                <Button type="submit" className="button text-white bg-green-700 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled={loadingState} sx={{"&.Mui-disabled": {color: "white"}}}>
+                <Button type="submit" className="button !text-white !bg-green-700 hover:!bg-green-800 focus:!ring-2 focus:!outline-none focus:!ring-green-900 !font-medium !rounded-lg !text-sm !px-5 !py-2.5 !text-center" disabled={loadingState} sx={{"&.Mui-disabled": {color: "white"}}}>
                     <span className="flex items-center">
                         {loadingState ? <>Submit&nbsp;<CircularProgress size={16} sx={{ color: "white" }} /></> : <>Submit&nbsp;<SendIcon className="text-lg flex items-center" /></>}
                     </span>

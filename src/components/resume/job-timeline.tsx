@@ -13,7 +13,7 @@ export default function JobTimeline() {
                         flex: 0,
                         padding: 0,
                     },
-                }} className="p-0 md:p-4">
+                }} className="!p-0 md:!p-4">
                     {
                         jobData.map((company) =>
                             <div key={company.company}>

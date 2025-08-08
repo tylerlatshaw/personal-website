@@ -8,7 +8,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { Button, CircularProgress } from "@mui/material/";
 import { inputStyles, inputLabelStyles } from "./dropdown-configuration";
 
-import type { EmailFormType } from "./../../app/lib/type-library";
+import type { EmailFormType } from "../../app/lib/type-library";
 
 export type TemplateOptions = "CS-OnList" | "CS-SiteLive" | "NewMessage" | "AutoReply";
 type SubmitState = "Idle" | "Success" | "Error";
@@ -40,7 +40,7 @@ const emailTemplate: TemplateSelection[] = [
   }
 ];
 
-export default function ManageEmails() {
+export default function ManageVinylRecords() {
 
   const {
     register,

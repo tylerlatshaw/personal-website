@@ -15,7 +15,7 @@ export default function PortfolioGallery() {
                                     <span className="text-lg leading-3 md:text-xl lg:text-2xl w-full font-semibold hover:text-green-500">Professional Projects & Presentations</span>
                                 </div>
                                 <div className="flex flex-col">
-                                    <Button className="button w-fit flex items-center bg-blue-800 hover:bg-blue-900 drop-shadow-xl rounded-2xl text-white text-center text-md font-semibold px-3 py-1.5 mx-0 my-0">
+                                    <Button className="button !w-fit !flex !items-center !bg-blue-800 hover:!bg-blue-900 !drop-shadow-xl !rounded-2xl !text-white !text-center !text-md !font-semibold !px-3 !py-1.5 !mx-0 !my-2 md:!m-2">
                                         View My Portfolio
                                     </Button>
                                 </div>
