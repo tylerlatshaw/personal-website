@@ -102,7 +102,7 @@ export default function Education() {
                                         </div>
                                     </div>
                                     <div className="flex w-full justify-center">
-                                        <Button className="button flex items-center bg-blue-800 hover:bg-blue-900 drop-shadow-xl rounded-2xl text-white text-center text-md font-semibold px-3 py-1.5 mx-0 my-2 md:m-2" onClick={() => updateFlippedCards(education.school)}>
+                                        <Button className="button !w-fit !flex !items-center !bg-blue-800 hover:!bg-blue-900 !drop-shadow-xl !rounded-2xl !text-white !text-center !text-md !font-semibold !px-3 !py-1.5 !mx-0 !my-2 md:!m-2" onClick={() => updateFlippedCards(education.school)}>
                                             View Courses
                                         </Button>
                                     </div>
@@ -125,14 +125,14 @@ export default function Education() {
                                         <div className="flex flex-row flex-wrap gap-2">
                                             {
                                                 education.courses.map((course) =>
-                                                    <Chip key={course} label={course} className="text-white bg-gray-700 font-normal text-base" />
+                                                    <Chip key={course} label={course} className="!text-white !bg-gray-700 !font-normal !text-base" />
                                                 )
                                             }
                                         </div>
                                     </div>
 
                                     <div className="flex w-full justify-center">
-                                        <Button className="button flex items-center bg-blue-800 hover:bg-blue-900 drop-shadow-xl rounded-2xl text-white text-center text-md font-semibold px-3 py-1.5 mx-0 my-2 md:m-2" onClick={() => updateFlippedCards(education.school)}>
+                                        <Button className="button !w-fit !flex !items-center !bg-blue-800 hover:!bg-blue-900 !drop-shadow-xl !rounded-2xl !text-white !text-center !text-md !font-semibold !px-3 !py-1.5 !mx-0 !my-2 md:!m-2" onClick={() => updateFlippedCards(education.school)}>
                                             <ArrowBackIcon />&nbsp;Back
                                         </Button>
                                     </div>

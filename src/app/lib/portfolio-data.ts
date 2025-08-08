@@ -153,10 +153,37 @@ export const portfolioOptions: portfolioOptionType[] = [
         category: "Reports"
     },
     {
-        portfolioSlug: "personal-website",
-        name: "My Personal Website/Portfolio",
+        portfolioSlug: "personal-dashboard",
+        name: "Personal Dashboard",
         order: 10,
         isFeatured: true,
+        description: "On a whim, I bought a heavily discounted monitor to put near my desk and decided to build myself my own personal dashboard complete with the time, weather data, and my calendar. Given my plan to run this off of an older, spare computer, it was a lesson for me on balancing optimization and caching while still having it be interactive with a modern design. This was also my first time incorporating external APIs (Weather.gov and Google API), and having them update in the background. I also have the core setting stored in the user's cookies.",
+        date: new Date("2025-08-07T00:00:00"),
+        associatedWith: null,
+        previewLink: filepath + "personal_dashboard_preview.png",
+        assetLink: filepath + "personal_dashboard.pdf",
+        webLink: null,
+        category: "Software Development",
+        createdWith: [
+            {
+                name: "Next.js",
+                icon: NextJsIcon()
+            },
+            {
+                name: "TypeScript",
+                icon: TypeScriptIcon()
+            },
+            {
+                name: "Tailwind CSS",
+                icon: TailwindIcon()
+            }
+        ]
+    },
+    {
+        portfolioSlug: "personal-website",
+        name: "My Personal Website/Portfolio",
+        order: 11,
+        isFeatured: false,
         description: "Welcome to my personal website! This site is a showcase of my journey, built using Next.js, TypeScript, and Supabase as the database. As someone who started with no prior (modern) web development experience, I've embraced the challenge of learning these technologies from scratch. Each project, report, and presentation featured here reflects my growth and dedication in mastering mordern technology and IT. For this website, I used Next.js for the site structure and API routing, Tailwind CSS for the styling, and Supabase as the database - all of which were new to me coming into this project. The website is deployed through Netlify via a GitHub repository.",
         date: new Date("2024-09-15T00:00:00"),
         associatedWith: null,
@@ -194,7 +221,7 @@ export const portfolioOptions: portfolioOptionType[] = [
     {
         portfolioSlug: "days-since-last",
         name: "Days Since Last - Task Manager",
-        order: 11,
+        order: 12,
         isFeatured: false,
         description: "Days Since Last is an easy-to-use task tracking system geared towards ensuring that you complete your recurring tasks on time. The website features a simple task dashboard that allows you to quickly reset your task completion date without being intrusive to your workflow or taking you out of the zone. Users can set various thresholds based on tasks being due and past due so you know at a quick glance if you are behind. The entire site is powered by Clauth login using Google Single Sign On (SSO) - my first site using third-party authentication.",
         date: new Date("2025-05-01T00:00:00"),
@@ -229,7 +256,7 @@ export const portfolioOptions: portfolioOptionType[] = [
     {
         portfolioSlug: "wordle-analyzer",
         name: "Wordle Analyzer",
-        order: 12,
+        order: 13,
         isFeatured: false,
         description: "Given my love of the word game Wordle, I decided to build a website that will essentially calculate and recommend words to guess based on previously guessed words. The entire system is designed based on an algorithm that parses all possible words, assigns a score to each letter in each character position, and then calculates an overall score for the word. Once a user enters a word and selects any correct, incorrect, or misplaced letters, it will recommend words to guess based on the likelihood of being used. The website is powered via a Supabase Postgres database.",
         date: new Date("2025-05-06T00:00:00"),
@@ -260,8 +287,8 @@ export const portfolioOptions: portfolioOptionType[] = [
     {
         portfolioSlug: "menu-creator",
         name: "Weekly Menu Creator",
-        order: 13,
-        isFeatured: true,
+        order: 14,
+        isFeatured: false,
         description: "Like most working adults, the last thing I want to do after a full day of work is spend even more time cooking a full dinner. At the recommendation of a friend, I started meal-prepping but I didn't like any of the apps or other sites on the market so I created my own. It is a simple-to-use website where you just put in your meals for each night, mark if meal-prepping is needed for that day, and it generates a PDF that is ready to print. While the site itself isn't necessary compared to just writing the meals down, it was a great way to learn PDF generation.",
         date: new Date("2025-03-09T00:00:00"),
         associatedWith: null,

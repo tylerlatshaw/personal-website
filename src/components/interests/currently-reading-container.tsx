@@ -20,21 +20,22 @@ export default async function CurrentlyReadingContainer() {
             <div className="flex items-stretch bg-gray-900 shadow-lg shadow-gray-800/80 rounded p-3 flex flex-1 flex-col justify-between w-1/2">
                 <img src={record.imageUrl} alt={record.name} className="w-full h-full rounded" />
             </div>
-            <div className="flex flex-col w-1/2 px-1 pt-4 mx-auto text-center gap-12">
+            <div className="flex flex-col justify-between h-2/3 sm:h-3/4 lg:h-full xl:h-2/3 w-1/2 px-1 pt-4 mx-auto text-center">
                 <div className="space-y-2">
                     <h3 className="leading-snug font-bold text-lg">{record.name}</h3>
                     <div className="mx-auto text-base italic text-gray-200 leading-tight">By {record.author}</div>
                 </div>
+
                 {
                     record.percentComplete < 100 ? <>
-                        <div className="mt-8 space-y-2">
+                        <div className="mt-8 pb-6 md:pb-0 lg:pb-8 xl:pb-4 space-y-2">
                             <span>Progress: {record.percentComplete}%</span>
                             <LinearProgress value={record.percentComplete} variant="determinate" sx={{ "height": "8px", "borderRadius": "8px" }} />
                         </div>
                     </> : <>
                         <div className="flex flex-col space-y-2">
                             <div className="flex w-full justify-center">
-                                <CheckCircleTwoToneIcon className="text-green-400 drop-shadow-lg" sx={{"fontSize": "3.5rem"}} />
+                                <CheckCircleTwoToneIcon className="!text-green-400 !drop-shadow-lg" sx={{ "fontSize": "3rem" }} />
                             </div>
                             <span>Finished On: {dayjs(record.dateCompleted!).format("M/D/YYYY")}</span>
                         </div>
@@ -53,7 +54,7 @@ export default async function CurrentlyReadingContainer() {
         });
 
         const recentSortedData = recentData.sort((a, b) => {
-            if (a.createdAt > b.createdAt)
+            if (a.createdAt < b.createdAt)
                 return 1;
             else
                 return -1;
@@ -61,15 +62,9 @@ export default async function CurrentlyReadingContainer() {
 
         return <>
             {
-                currentSortedData && currentSortedData.map((record) => {
-                    return <BookCard {...record} key={record.id} />;
-                })
-            }
-
-            {
-                recentSortedData && recentSortedData.map((record) => {
-                    return <BookCard {...record} key={record.id} />;
-                })
+                [...currentSortedData, ...recentSortedData].map((record) => (
+                    <BookCard {...record} key={record.id} />
+                ))
             }
         </>;
     }

@@ -643,11 +643,11 @@ input:-webkit-autofill:active {
 /*******************************/
 
 .MuiLinearProgress-barColorPrimary {
-  background-color: var(--green-600);
+  background-color: var(--green-600) !important;
 }
 
 .MuiLinearProgress-root {
-  background-color: var(--green-100);
+  background-color: var(--green-100) !important;
 }
 
 

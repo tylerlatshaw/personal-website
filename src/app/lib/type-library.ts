@@ -31,6 +31,16 @@ export type ContactResultType = {
     formSource: string
 }
 
+export type CurrentlyReadingFormType = {
+    apiKey: string,
+    id: number | null,
+    name: string,
+    author: string,
+    percentComplete: number,
+    dateCompleted: Date | null,
+    imageUrl: string
+}
+
 export type CurrentlyReadingResultType = {
     id: number,
     createdAt: Date,

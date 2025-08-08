@@ -11,7 +11,7 @@ export default function InterestsContainer() {
         "3D Printing",
         "Laser Engraving",
         "Genealogy",
-        "Coding (Useless) Websites",
+        "Coding (Mostly) Useless Websites",
         "Hockey",
         "DIY-ing",
         "Playing With My Nephew",
@@ -49,7 +49,7 @@ export default function InterestsContainer() {
             <div className="flex flex-row flex-wrap gap-3 w-full md:w-3/5 mx-auto basis-auto justify-center">
                 {
                     otherInterests.map((item) => {
-                        return <Chip key={item} label={item} className="text-white bg-gray-800 text-lg tracking-wide mb-3 px-2 py-1 shadow-md shadow-gray-900" />;
+                        return <Chip key={item} label={item} className="!text-white !bg-gray-800 !text-lg !tracking-wide !font-medium !mb-3 !px-2 !py-1 !shadow-md !shadow-gray-900" />;
                     })
                 }
             </div>

@@ -1,45 +1,63 @@
 "use client";
 
 import { useState } from "react";
-import DeveloperEmails from "./developer-emails";
+import ManageEmails from "./developer-emails";
 import GitCommands from "./developer-git-commands";
 import NetlifyCommands from "./developer-netlify-commands";
 import NodeCommands from "./developer-node-commands";
 
 import type { DeveloperItemType } from "../../app/lib/type-library";
 import Hamburger from "hamburger-react";
+import SupabaseCommands from "./developer-supabase-commands";
+import ManageVinylRecords from "./developer-manage-vinyl-records";
+import ManageCurrentlyReading from "./developer-manage-currently-reading";
 
 export default function DeveloperContainer() {
 
   const modules: DeveloperItemType[] = [
     {
       title: "Manage Emails",
-      content: <DeveloperEmails />,
+      content: <ManageEmails />,
       index: 0
+    },
+    {
+      title: "Manage Currently Reading",
+      content: <ManageCurrentlyReading />,
+      index: 1
+    },
+    {
+      title: "Manage Vinyl Records",
+      content: <ManageVinylRecords />,
+      index: 2
     },
     {
       title: "Git CLI Commands",
       content: <GitCommands />,
-      index: 1
+      index: 3
     },
     {
       title: "Netlify CLI Commands",
       content: <NetlifyCommands />,
-      index: 2
+      index: 4
     },
     {
       title: "Node CLI Commands",
       content: <NodeCommands />,
-      index: 3
+      index: 5
+    },
+    {
+      title: "Supabase CLI Commands",
+      content: <SupabaseCommands />,
+      index: 6
     },
   ];
 
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(1);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activePageName, setActivePageName] = useState<string>(modules[0].title);
 
-  const desktopActiveClasses = "w-full py-8 bg-gray-800 border-l-8 border-y-2 border-green-600 border-r-2 border-r-transparent first:rounded-tl-lg last:rounded-bl-lg cursor-default";
-  const desktopInactiveClasses = "w-full py-8 bg-gray-600 border-l-8 border-l-transparent border-r-2 border-green-600 border-t-2 border-t-gray-500 first:border-t-transparent border-b-2 border-b-transparent hover:bg-green-600 hover:border-y-green-600 hover:text-white first:rounded-tl-lg last:rounded-bl-lg";
+  const desktopActiveClasses = "w-full py-6 bg-gray-800 border-l-8 border-y-2 border-green-600 border-r-2 border-r-transparent first:rounded-tl-lg last:rounded-bl-lg cursor-default";
+  const desktopInactiveClasses = "w-full py-6 bg-gray-600 border-l-8 border-l-transparent border-r-2 border-green-600 border-t-2 border-t-gray-500 first:border-t-transparent border-b-2 border-b-transparent hover:bg-green-600 hover:border-y-green-600 hover:text-white first:rounded-tl-lg last:rounded-bl-lg";
 
   const mobileActiveClasses = "flex items-center w-full bg-green-600 text-white hover:bg-green-600 hover:text-white last:rounded-b-lg cursor-default";
   const mobileInactiveClasses = "flex items-center w-full bg-gray-600 hover:bg-green-600 hover:text-white last:rounded-b-lg";
@@ -95,7 +113,7 @@ export default function DeveloperContainer() {
           </> : null}
         </div>
 
-        <div className="z-20 bg-gray-800 shadow-lg shadow-gray-800 w-full md:w-4/5 px-12 py-4 border-2 md:border-y-2 md:border-r-2 md:border-l-0 border-green-600 rounded-lg md:rounded-l-none mx-auto">
+        <div className="z-20 bg-gray-800 shadow-lg shadow-gray-800 w-full md:w-4/5 px-6 md:px-12 py-4 border-2 md:border-y-2 md:border-r-2 md:border-l-0 border-green-600 rounded-lg md:rounded-l-none mx-auto">
           <div className="w-full mx-auto my-8">
             {
               modules.map((module) => {
