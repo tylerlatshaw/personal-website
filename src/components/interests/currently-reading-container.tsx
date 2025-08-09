@@ -1,17 +1,39 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import { CurrentlyReadingResultType } from "../../app/lib/type-library";
 import { LinearProgress } from "@mui/material";
 import dayjs from "dayjs";
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
+import { useEffect, useState } from "react";
+import CurrentlyReadingLoading from "./currently-reading-loading";
 
-export default async function CurrentlyReadingContainer() {
+export default function CurrentlyReadingContainer() {
 
-    const response = await fetch(process.env.BASE_URL + "/api/get-currently-reading", { cache: "no-store" });
-    const data: CurrentlyReadingResultType[] = await response.json();
-    const currentData = data.filter((a) => {
+    const [currentlyReading, setCurrentlyReading] = useState<CurrentlyReadingResultType[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const res = await fetch("/api/get-currently-reading", { cache: "no-store" });
+                if (!res.ok) throw new Error("Failed to fetch");
+                const json = await res.json();
+                setCurrentlyReading(json);
+            } catch (e) {
+                console.error(e);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getData();
+    }, []);
+
+    const currentData = currentlyReading.filter((a) => {
         return a.percentComplete > 0 && a.percentComplete < 100;
     });
-    const recentData = data.filter((a) => {
+    const recentData = currentlyReading.filter((a) => {
         return a.percentComplete === 100 && dayjs(a.dateCompleted!) >= dayjs().subtract(60, "days");
     });
 
@@ -68,6 +90,9 @@ export default async function CurrentlyReadingContainer() {
             }
         </>;
     }
+
+    if (loading)
+        return <CurrentlyReadingLoading />;
 
     return <>
         {generateCards()}
