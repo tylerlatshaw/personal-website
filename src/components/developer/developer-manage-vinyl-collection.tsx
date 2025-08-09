@@ -10,8 +10,8 @@ import { components } from "react-select";
 import noDataFound from "../global-components/no-data";
 
 import type {
-  CurrentlyReadingFormType,
-  CurrentlyReadingResultType,
+  VinylFormType,
+  VinylResultType,
 } from "../../app/lib/type-library";
 
 type SubmitState = "Idle" | "Success" | "Error";
@@ -19,20 +19,18 @@ type SelectOption = { value: number; label: string };
 
 const environment = process.env.NODE_ENV;
 
-export default function ManageCurrentlyReading() {
+export default function ManageVinylCollection() {
   const {
     register,
     handleSubmit,
     control,
     setValue,
-  } = useForm<CurrentlyReadingFormType>({
+  } = useForm<VinylFormType>({
     defaultValues: {
       apiKey: "",
       id: undefined,
       name: "",
-      author: "",
-      percentComplete: 0,
-      dateCompleted: null,
+      artist: "",
       imageUrl: "",
     },
   });
@@ -41,23 +39,23 @@ export default function ManageCurrentlyReading() {
   const [responseMessage, setResponseMessage] = useState<string>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [optionsLoading, setOptionsLoading] = useState<boolean>(true);
-  const [bookOptions, setBookOptions] = useState<SelectOption[]>([]);
-  const [allBooks, setAllBooks] = useState<CurrentlyReadingResultType[]>([]);
+  const [recordOptions, setRecordOptions] = useState<SelectOption[]>([]);
+  const [allRecords, setAllRecords] = useState<VinylResultType[]>([]);
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("/api/get-currently-reading", { cache: "no-store" });
+        const res = await fetch("/api/get-vinyl-collection", { cache: "no-store" });
         if (!res.ok) throw new Error("Failed to fetch books");
-        const json: CurrentlyReadingResultType[] = await res.json();
+        const json: VinylResultType[] = await res.json();
         json.sort((a, b) => {
           if (a.name < b.name) return -1;
           if (a.name > b.name) return 1;
           return 0;
         });
-        setAllBooks(json);
-        setBookOptions(json.map((b) => ({ value: b.id, label: b.name })));
+        setAllRecords(json);
+        setRecordOptions(json.map((b) => ({ value: b.id, label: b.name })));
       } catch (e) {
         console.error(e);
       } finally {
@@ -66,13 +64,13 @@ export default function ManageCurrentlyReading() {
     })();
   }, []);
 
-  const onSubmit: SubmitHandler<CurrentlyReadingFormType> = async (formData) => {
+  const onSubmit: SubmitHandler<VinylFormType> = async (formData) => {
     setSubmitState("Idle");
     setResponseMessage("");
     setSubmitting(true);
 
     try {
-      const response = await fetch("/api/update-currently-reading", {
+      const response = await fetch("/api/update-vinyl-collection", {
         method: "POST",
         body: JSON.stringify(formData),
       });
@@ -108,7 +106,7 @@ export default function ManageCurrentlyReading() {
           className={inputStyles}
           maxLength={36}
           required
-          disabled={submitting || !bookOptions}
+          disabled={submitting || !recordOptions}
         />
         <label htmlFor="apiKey" className={inputLabelStyles}>
           API Key
@@ -125,7 +123,7 @@ export default function ManageCurrentlyReading() {
 
   return (
     <div className="developer-module">
-      <h2>Manage Currently Reading</h2>
+      <h2>Manage Vinyl Collection</h2>
 
       <form
         className="flex flex-col flex-wrap w-full md:w-2/3 mx-auto mt-1 developer-tools-form gap-8"
@@ -138,8 +136,8 @@ export default function ManageCurrentlyReading() {
           control={control}
           render={({ field }) => (
             <CreatableSelect<SelectOption, false>
-              value={bookOptions.find((opt) => opt.value === field.value) || null}
-              options={bookOptions}
+              value={recordOptions.find((opt) => opt.value === field.value) || null}
+              options={recordOptions}
               isClearable={false}
               isMulti={false}
               isLoading={optionsLoading}
@@ -154,20 +152,16 @@ export default function ManageCurrentlyReading() {
                 field.onChange(newId);
                 setValue("name", newName);
                 setIsSelected(true);
-                allBooks.find((book) => {
-                  if (book.id === opt?.value) {
-                    setValue("author", book.author);
-                    setValue("percentComplete", book.percentComplete);
-                    book.dateCompleted ?
-                      setValue("dateCompleted", new Date(book.dateCompleted!).toISOString().substring(0, 10) as unknown as Date)
-                      : setValue("dateCompleted", null);
-                    setValue("imageUrl", book.imageUrl);
+                allRecords.find((record) => {
+                  if (record.id === opt?.value) {
+                    setValue("artist", record.artist);
+                    setValue("imageUrl", record.imageUrl);
                   }
                 });
               }}
               onCreateOption={(inputValue) => {
                 const newOption = { value: -1, label: inputValue };
-                setBookOptions((prev) => [newOption, ...prev]);
+                setRecordOptions((prev) => [newOption, ...prev]);
                 field.onChange(-1);
                 setValue("name", inputValue);
                 setIsSelected(true);
@@ -181,35 +175,25 @@ export default function ManageCurrentlyReading() {
             {GetApiField()}
 
             <div className="relative w-full group">
-              <input {...register("name")} type="text" className={inputStyles} disabled={submitting || !bookOptions} required />
+              <input {...register("name")} type="text" className={inputStyles} disabled={submitting || !recordOptions} required />
               <label htmlFor="name" className={inputLabelStyles}>Title</label>
             </div>
 
             <div className="relative w-full group">
-              <input {...register("author")} type="text" className={inputStyles} disabled={submitting || !bookOptions} required />
-              <label htmlFor="author" className={inputLabelStyles}>Author</label>
+              <input {...register("artist")} type="text" className={inputStyles} disabled={submitting || !recordOptions} required />
+              <label htmlFor="artist" className={inputLabelStyles}>Artist</label>
             </div>
 
             <div className="relative w-full group">
-              <input {...register("percentComplete", { valueAsNumber: true })} type="number" min={0} max={100} className={inputStyles} disabled={submitting || !bookOptions} required />
-              <label htmlFor="percentComplete" className={inputLabelStyles}>Percent Complete</label>
-            </div>
-
-            <div className="relative w-full group">
-              <input {...register("dateCompleted")} type="date" className={inputStyles} disabled={submitting || !bookOptions} />
-              <label htmlFor="dateCompleted" className={inputLabelStyles}>Date Completed</label>
-            </div>
-
-            <div className="relative w-full group">
-              <input {...register("imageUrl")} type="url" className={inputStyles} disabled={submitting || !bookOptions} required />
-              <label htmlFor="imageUrl" className={inputLabelStyles}>Image URL</label>
+              <input {...register("imageUrl")} type="text" className={inputStyles} disabled={submitting || !recordOptions} required />
+              <label htmlFor="imageUrl" className={inputLabelStyles}>Image</label>
             </div>
 
             <div className="flex items-center">
               <Button
                 type="submit"
                 className="button !text-white !bg-green-700 hover:!bg-green-800 focus:!ring-2 focus:!outline-none focus:!ring-green-900 !font-medium !rounded-lg !text-sm !w-full sm:!w-auto !px-5 !py-2.5 !text-center"
-                disabled={submitting || !bookOptions}
+                disabled={submitting || !recordOptions}
                 sx={{ "&.Mui-disabled": { color: "white" } }}
               >
                 <span className="flex items-center">

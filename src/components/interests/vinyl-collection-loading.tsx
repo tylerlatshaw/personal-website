@@ -1,4 +1,4 @@
-export default function VinylRecordLoading() {
+export default function VinylCollectionLoading() {
 
     const placeholder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -19,5 +19,4 @@ export default function VinylRecordLoading() {
     return <>
         {loadingContainer}
     </>;
-
 }
