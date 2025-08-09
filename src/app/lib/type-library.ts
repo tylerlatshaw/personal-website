@@ -32,7 +32,7 @@ export type ContactResultType = {
 }
 
 export type CurrentlyReadingFormType = {
-    apiKey: string,
+    apiKey?: string,
     id: number | null,
     name: string,
     author: string,
