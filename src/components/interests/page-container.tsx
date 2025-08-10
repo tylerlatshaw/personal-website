@@ -1,9 +1,6 @@
 import CurrentlyReadingContainer from "./../../components/interests/currently-reading-container";
-import VinylRecordContainer from "./../../components/interests/vinyl-record-container";
+import VinylRecordContainer from "./vinyl-collection-container";
 import { Chip } from "@mui/material";
-import { Suspense } from "react";
-import CurrentlyReadingLoading from "./currently-reading-loading";
-import VinylRecordLoading from "./vinyl-record-loading";
 
 export default function InterestsContainer() {
 
@@ -24,22 +21,14 @@ export default function InterestsContainer() {
         <div className="flex flex-col w-full">
             <h2>Currently Reading</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-8 p-2 w-full">
-                {
-                    <Suspense fallback={<CurrentlyReadingLoading />}>
-                        <CurrentlyReadingContainer />
-                    </Suspense>
-                }
+                <CurrentlyReadingContainer />
             </div>
         </div>
 
         <div className="flex flex-col w-full">
             <h2>Vinyl Collection</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 p-2 w-full">
-                {
-                    <Suspense fallback={<VinylRecordLoading />}>
-                        <VinylRecordContainer />
-                    </Suspense>
-                }
+                <VinylRecordContainer />
             </div>
         </div>
 

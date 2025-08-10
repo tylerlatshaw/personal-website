@@ -699,6 +699,10 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: white;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
 .developer-module table {
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */

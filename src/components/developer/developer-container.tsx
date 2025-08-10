@@ -9,7 +9,7 @@ import NodeCommands from "./developer-node-commands";
 import type { DeveloperItemType } from "../../app/lib/type-library";
 import Hamburger from "hamburger-react";
 import SupabaseCommands from "./developer-supabase-commands";
-import ManageVinylRecords from "./developer-manage-vinyl-records";
+import ManageVinylCollection from "./developer-manage-vinyl-collection";
 import ManageCurrentlyReading from "./developer-manage-currently-reading";
 
 export default function DeveloperContainer() {
@@ -26,8 +26,8 @@ export default function DeveloperContainer() {
       index: 1
     },
     {
-      title: "Manage Vinyl Records",
-      content: <ManageVinylRecords />,
+      title: "Manage Vinyl Collection",
+      content: <ManageVinylCollection />,
       index: 2
     },
     {

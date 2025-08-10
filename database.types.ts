@@ -14,27 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      artists: {
-        Row: {
-          created_at: string
-          id: number
-          modified_at: string
-          name: string
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          modified_at?: string
-          name: string
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          modified_at?: string
-          name?: string
-        }
-        Relationships: []
-      }
       contact_messages: {
         Row: {
           created_at: string
@@ -101,107 +80,6 @@ export type Database = {
         }
         Relationships: []
       }
-      genres: {
-        Row: {
-          created_at: string
-          id: number
-          modified_at: string
-          name: string
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          modified_at?: string
-          name: string
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          modified_at?: string
-          name?: string
-        }
-        Relationships: []
-      }
-      records: {
-        Row: {
-          artist_id: number
-          created_at: string
-          discogs_url: string
-          id: number
-          image_url: string
-          modified_at: string
-          name: string
-          year: number
-        }
-        Insert: {
-          artist_id: number
-          created_at?: string
-          discogs_url: string
-          id?: number
-          image_url: string
-          modified_at?: string
-          name: string
-          year: number
-        }
-        Update: {
-          artist_id?: number
-          created_at?: string
-          discogs_url?: string
-          id?: number
-          image_url?: string
-          modified_at?: string
-          name?: string
-          year?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "Records_artist_id_fkey"
-            columns: ["artist_id"]
-            isOneToOne: false
-            referencedRelation: "artists"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      records_to_genres: {
-        Row: {
-          created_at: string
-          genre_id: number
-          id: number
-          modified_at: string
-          record_id: number
-        }
-        Insert: {
-          created_at?: string
-          genre_id: number
-          id?: number
-          modified_at?: string
-          record_id: number
-        }
-        Update: {
-          created_at?: string
-          genre_id?: number
-          id?: number
-          modified_at?: string
-          record_id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "RecordsToGenres_genre_id_fkey"
-            columns: ["genre_id"]
-            isOneToOne: false
-            referencedRelation: "genres"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "RecordsToGenres_record_id_fkey"
-            columns: ["record_id"]
-            isOneToOne: false
-            referencedRelation: "records"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       table_log: {
         Row: {
           created_at: string
@@ -220,6 +98,33 @@ export type Database = {
           id?: number
           log_entry?: string
           modified_at?: string
+        }
+        Relationships: []
+      }
+      vinyl_collection: {
+        Row: {
+          artist: string
+          created_at: string
+          id: number
+          image_url: string
+          modified_at: string
+          name: string
+        }
+        Insert: {
+          artist: string
+          created_at?: string
+          id?: number
+          image_url: string
+          modified_at?: string
+          name: string
+        }
+        Update: {
+          artist?: string
+          created_at?: string
+          id?: number
+          image_url?: string
+          modified_at?: string
+          name?: string
         }
         Relationships: []
       }
@@ -360,4 +265,4 @@ export const Constants = {
   public: {
     Enums: {},
   },
-} as const;
+} as const
