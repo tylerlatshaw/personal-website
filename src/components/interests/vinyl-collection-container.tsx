@@ -7,7 +7,7 @@ import VinylCollectionLoading from "./vinyl-collection-loading";
 
 export default function VinylCollectionContainer() {
 
-    const imageFilepath = process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public/personal-website-storage/vinyl-collection/";
+    const imageFilepath = process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public/personal-website-storage/";
 
     const [allRecords, setAllRecords] = useState<VinylResultType[]>([]);
     const [loading, setLoading] = useState<boolean>(true);

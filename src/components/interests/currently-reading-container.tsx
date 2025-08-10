@@ -10,6 +10,8 @@ import CurrentlyReadingLoading from "./currently-reading-loading";
 
 export default function CurrentlyReadingContainer() {
 
+    const imageFilepath = process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public/personal-website-storage/";
+
     const [currentlyReading, setCurrentlyReading] = useState<CurrentlyReadingResultType[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -40,7 +42,7 @@ export default function CurrentlyReadingContainer() {
     const BookCard = (record: CurrentlyReadingResultType) => <>
         <div key={record.id} className="flex flex-row gap-2">
             <div className="flex items-stretch bg-gray-900 shadow-lg shadow-gray-800/80 rounded p-3 flex flex-1 flex-col justify-between w-1/2">
-                <img src={record.imageUrl} alt={record.name} className="w-full h-full rounded" />
+                <img src={imageFilepath + record.imageUrl} alt={record.name} className="w-full h-full rounded" />
             </div>
             <div className="flex flex-col justify-between h-2/3 sm:h-3/4 lg:h-full xl:h-2/3 w-1/2 px-1 pt-4 mx-auto text-center">
                 <div className="space-y-2">

@@ -8,6 +8,9 @@ import { inputStyles, inputLabelStyles, dropdownStyles } from "./dropdown-config
 import CreatableSelect from "react-select/creatable";
 import { components } from "react-select";
 import noDataFound from "../global-components/no-data";
+import { v4 as uuidv4 } from "uuid";
+import Image from "next/image";
+import PhotoIcon from "@mui/icons-material/Photo";
 
 import type {
   VinylFormType,
@@ -42,12 +45,17 @@ export default function ManageVinylCollection() {
   const [recordOptions, setRecordOptions] = useState<SelectOption[]>([]);
   const [allRecords, setAllRecords] = useState<VinylResultType[]>([]);
   const [isSelected, setIsSelected] = useState<boolean>(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [existingFilepath, setExistingFilepath] = useState<string>("");
+  const [filePreview, setFilePreview] = useState<string>("");
+
+  const imageFilepath = process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public/personal-website-storage/";
 
   useEffect(() => {
     (async () => {
       try {
         const res = await fetch("/api/get-vinyl-collection", { cache: "no-store" });
-        if (!res.ok) throw new Error("Failed to fetch books");
+        if (!res.ok) throw new Error("Failed to fetch records");
         const json: VinylResultType[] = await res.json();
         json.sort((a, b) => {
           if (a.name < b.name) return -1;
@@ -70,6 +78,26 @@ export default function ManageVinylCollection() {
     setSubmitting(true);
 
     try {
+      if (file) {
+        const fileUpload = new FormData();
+        const filename = uuidv4() + "." + file.type.replace(/(.*)\//g, "");
+        fileUpload.append("apiKey", formData.apiKey!);
+        fileUpload.append("file", file);
+        fileUpload.append("filename", filename);
+        fileUpload.append("directory", "vinyl-collection");
+
+        const response = await fetch("/api/upload-file", {
+          method: "POST",
+          body: fileUpload,
+        });
+        const json = await response.json();
+        if (!response.ok) throw new Error(json.error || "Upload failed");
+
+        console.log(json);
+
+        formData.imageUrl = json.path;
+      }
+
       const response = await fetch("/api/update-vinyl-collection", {
         method: "POST",
         body: JSON.stringify(formData),
@@ -98,6 +126,7 @@ export default function ManageVinylCollection() {
     if (environment === "development") {
       return <input {...register("apiKey")} type="password" className="hidden" />;
     }
+
     return (
       <div className="relative w-full group">
         <input
@@ -141,7 +170,7 @@ export default function ManageVinylCollection() {
               isClearable={false}
               isMulti={false}
               isLoading={optionsLoading}
-              noOptionsMessage={() => noDataFound("Books")}
+              noOptionsMessage={() => noDataFound("Records")}
               styles={dropdownStyles}
               components={{
                 Input: (props) => <components.Input {...props} maxLength={120} />,
@@ -156,6 +185,7 @@ export default function ManageVinylCollection() {
                   if (record.id === opt?.value) {
                     setValue("artist", record.artist);
                     setValue("imageUrl", record.imageUrl);
+                    setExistingFilepath(imageFilepath + record.imageUrl);
                   }
                 });
               }}
@@ -175,6 +205,42 @@ export default function ManageVinylCollection() {
             {GetApiField()}
 
             <div className="relative w-full group">
+              <span className={inputLabelStyles}>Cover Photo</span>
+              <div className="flex flex-row items-center mt-6 gap-8">
+                <label
+                  htmlFor="fileUpload"
+                  className="flex flex-col items-center justify-center h-32 w-1/2 rounded-lg border border-white bg-white/10 px-3 py-1 text-sm shadow-sm transition-colors cursor-pointer hover:bg-white/20"
+                >
+                  <span className="text-center text-white">Click to Upload</span>
+                </label>
+
+                {
+                  file
+                    ? <Image src={filePreview} width={128} height={128} alt={"File Preview"} className="rounded-lg" priority={false} />
+                    : existingFilepath != ""
+                      ? <Image src={existingFilepath} width={128} height={128} alt={"File Preview"} className="rounded-lg" priority={false} />
+                      : <div className="flex flex-col items-center justify-center border border-green-500 rounded-lg bg-green-500/10 w-[82px] h-32 aspect-square text-green-500">
+                        <PhotoIcon />
+                      </div>
+                }
+              </div>
+
+              <input
+                type="file"
+                accept="image/*"
+                id="fileUpload"
+                onChange={(e) => {
+                  setFile(e.target.files?.[0] ?? null);
+                  existingFilepath ? URL.revokeObjectURL(existingFilepath) : null;
+                  const objectUrl = URL.createObjectURL(e.target.files?.[0] as Blob);
+                  setFilePreview(objectUrl);
+                }}
+                className="hidden"
+              />
+              <input {...register("imageUrl")} type="hidden" />
+            </div>
+
+            <div className="relative w-full group">
               <input {...register("name")} type="text" className={inputStyles} disabled={submitting || !recordOptions} required />
               <label htmlFor="name" className={inputLabelStyles}>Title</label>
             </div>
@@ -182,11 +248,6 @@ export default function ManageVinylCollection() {
             <div className="relative w-full group">
               <input {...register("artist")} type="text" className={inputStyles} disabled={submitting || !recordOptions} required />
               <label htmlFor="artist" className={inputLabelStyles}>Artist</label>
-            </div>
-
-            <div className="relative w-full group">
-              <input {...register("imageUrl")} type="text" className={inputStyles} disabled={submitting || !recordOptions} required />
-              <label htmlFor="imageUrl" className={inputLabelStyles}>Image</label>
             </div>
 
             <div className="flex items-center">

@@ -8,6 +8,9 @@ import { inputStyles, inputLabelStyles, dropdownStyles } from "./dropdown-config
 import CreatableSelect from "react-select/creatable";
 import { components } from "react-select";
 import noDataFound from "../global-components/no-data";
+import { v4 as uuidv4 } from "uuid";
+import Image from "next/image";
+import PhotoIcon from "@mui/icons-material/Photo";
 
 import type {
   CurrentlyReadingFormType,
@@ -44,6 +47,11 @@ export default function ManageCurrentlyReading() {
   const [bookOptions, setBookOptions] = useState<SelectOption[]>([]);
   const [allBooks, setAllBooks] = useState<CurrentlyReadingResultType[]>([]);
   const [isSelected, setIsSelected] = useState<boolean>(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [existingFilepath, setExistingFilepath] = useState<string>("");
+  const [filePreview, setFilePreview] = useState<string>("");
+
+  const imageFilepath = process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public/personal-website-storage/";
 
   useEffect(() => {
     (async () => {
@@ -72,6 +80,26 @@ export default function ManageCurrentlyReading() {
     setSubmitting(true);
 
     try {
+      if (file) {
+        const fileUpload = new FormData();
+        const filename = uuidv4() + "." + file.type.replace(/(.*)\//g, "");
+        fileUpload.append("apiKey", formData.apiKey!);
+        fileUpload.append("file", file);
+        fileUpload.append("filename", filename);
+        fileUpload.append("directory", "currently-reading");
+
+        const response = await fetch("/api/upload-file", {
+          method: "POST",
+          body: fileUpload,
+        });
+        const json = await response.json();
+        if (!response.ok) throw new Error(json.error || "Upload failed");
+
+        console.log(json);
+
+        formData.imageUrl = json.path;
+      }
+
       const response = await fetch("/api/update-currently-reading", {
         method: "POST",
         body: JSON.stringify(formData),
@@ -162,6 +190,7 @@ export default function ManageCurrentlyReading() {
                       setValue("dateCompleted", new Date(book.dateCompleted!).toISOString().substring(0, 10) as unknown as Date)
                       : setValue("dateCompleted", null);
                     setValue("imageUrl", book.imageUrl);
+                    setExistingFilepath(imageFilepath + book.imageUrl);
                   }
                 });
               }}
@@ -179,6 +208,42 @@ export default function ManageCurrentlyReading() {
         {
           isSelected ? <>
             {GetApiField()}
+
+            <div className="relative w-full group">
+              <span className={inputLabelStyles}>Cover Photo</span>
+              <div className="flex flex-row items-center mt-6 gap-8">
+                <label
+                  htmlFor="fileUpload"
+                  className="flex flex-col items-center justify-center h-32 w-1/2 rounded-lg border border-white bg-white/10 px-3 py-1 text-sm shadow-sm transition-colors cursor-pointer hover:bg-white/20"
+                >
+                  <span className="text-center text-white">Click to Upload</span>
+                </label>
+
+                {
+                  file
+                    ? <Image src={filePreview} width={82} height={128} alt={"File Preview"} className="rounded-lg" priority={false} />
+                    : existingFilepath != ""
+                      ? <Image src={existingFilepath} width={82} height={128} alt={"File Preview"} className="rounded-lg" priority={false} />
+                      : <div className="flex flex-col items-center justify-center border border-green-500 rounded-lg bg-green-500/10 w-[82px] h-32 aspect-square text-green-500">
+                        <PhotoIcon />
+                      </div>
+                }
+              </div>
+
+              <input
+                type="file"
+                accept="image/*"
+                id="fileUpload"
+                onChange={(e) => {
+                  setFile(e.target.files?.[0] ?? null);
+                  existingFilepath ? URL.revokeObjectURL(existingFilepath) : null;
+                  const objectUrl = URL.createObjectURL(e.target.files?.[0] as Blob);
+                  setFilePreview(objectUrl);
+                }}
+                className="hidden"
+              />
+              <input {...register("imageUrl")} type="hidden" />
+            </div>
 
             <div className="relative w-full group">
               <input {...register("name")} type="text" className={inputStyles} disabled={submitting || !bookOptions} required />
@@ -200,10 +265,7 @@ export default function ManageCurrentlyReading() {
               <label htmlFor="dateCompleted" className={inputLabelStyles}>Date Completed</label>
             </div>
 
-            <div className="relative w-full group">
-              <input {...register("imageUrl")} type="url" className={inputStyles} disabled={submitting || !bookOptions} required />
-              <label htmlFor="imageUrl" className={inputLabelStyles}>Image URL</label>
-            </div>
+            <input {...register("imageUrl")} type="hidden" />
 
             <div className="flex items-center">
               <Button
