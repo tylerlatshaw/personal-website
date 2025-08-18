@@ -1,20 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import SendIcon from "@mui/icons-material/Send";
-import { Button, CircularProgress } from "@mui/material/";
-import { inputStyles, inputLabelStyles, dropdownStyles } from "./dropdown-configuration";
-import CreatableSelect from "react-select/creatable";
-import { components } from "react-select";
-import noDataFound from "../global-components/no-data";
-import { v4 as uuidv4 } from "uuid";
+import {
+    useEffect,
+    useState
+} from "react";
 import Image from "next/image";
+
+import { CircularProgress } from "@mui/material/";
 import PhotoIcon from "@mui/icons-material/Photo";
+import SendIcon from "@mui/icons-material/Send";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { components } from "react-select";
+import CreatableSelect from "react-select/creatable";
+import { v4 as uuidv4 } from "uuid";
+
+import Button from "../ui/button";
+import noDataFound from "../global-components/no-data";
+import {
+    dropdownStyles,
+    inputLabelStyles,
+    inputStyles
+} from "./dropdown-configuration";
 
 import type {
-  VinylFormType,
-  VinylResultType,
+    VinylFormType,
+    VinylResultType
 } from "../../app/lib/type-library";
 
 type SubmitState = "Idle" | "Success" | "Error";
@@ -251,16 +261,11 @@ export default function ManageVinylCollection() {
             </div>
 
             <div className="flex items-center">
-              <Button
-                type="submit"
-                className="button !text-white !bg-green-700 hover:!bg-green-800 focus:!ring-2 focus:!outline-none focus:!ring-green-900 !font-medium !rounded-lg !text-sm !w-full sm:!w-auto !px-5 !py-2.5 !text-center"
-                disabled={submitting || !recordOptions}
-                sx={{ "&.Mui-disabled": { color: "white" } }}
-              >
+              <Button type="submit" disabled={submitting || !recordOptions}>
                 <span className="flex items-center">
                   {submitting ? (
                     <>
-                      Submit&nbsp;<CircularProgress size={16} sx={{ color: "white" }} />
+                      Submit&nbsp;<CircularProgress size={14} sx={{ color: "white" }} />
                     </>
                   ) : (
                     <>

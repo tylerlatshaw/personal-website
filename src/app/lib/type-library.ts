@@ -1,6 +1,7 @@
-import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { TemplateOptions } from "../../components/developer/developer-emails";
+import { SvgIconTypeMap } from "@mui/material";
+
+import type { TemplateOptions } from "../../components/developer/developer-emails";
 
 export type ContactDataType = {
     name: string,

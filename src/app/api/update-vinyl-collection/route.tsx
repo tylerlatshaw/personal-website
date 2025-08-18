@@ -1,6 +1,8 @@
-import { VinylFormType } from "@/app/lib/type-library";
-import supabase from "../../../utilities/supabase";
 import { NextResponse } from "next/server";
+
+import supabase from "../../../utilities/supabase";
+
+import type { VinylFormType } from "@/app/lib/type-library";
 
 export async function POST(request: Request) {
     try {

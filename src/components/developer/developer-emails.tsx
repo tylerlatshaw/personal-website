@@ -1,14 +1,20 @@
 "use client";
 
-import axios from "axios";
 import { useState } from "react";
+
+import axios from "axios";
+import { CircularProgress } from "@mui/material/";
+import SendIcon from "@mui/icons-material/Send";
 import { SubmitHandler, useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
-import SendIcon from "@mui/icons-material/Send";
-import { Button, CircularProgress } from "@mui/material/";
-import { inputStyles, inputLabelStyles } from "./dropdown-configuration";
 
-import type { EmailFormType } from "./../../app/lib/type-library";
+import Button from "../ui/button";
+import {
+    inputLabelStyles,
+    inputStyles
+} from "./dropdown-configuration";
+
+import type { EmailFormType } from "../../app/lib/type-library";
 
 export type TemplateOptions = "CS-OnList" | "CS-SiteLive" | "NewMessage" | "AutoReply";
 type SubmitState = "Idle" | "Success" | "Error";
@@ -199,10 +205,19 @@ export default function ManageEmails() {
         {GetApiField()}
         {GetSelectedTemplateFields()}
         <div className="flex items-center">
-          <Button type="submit" className="button text-white bg-green-700 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-900 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" disabled={loadingState} sx={{"&.Mui-disabled": {color: "white"}}}>
+          <Button type="submit" disabled={loadingState}>
             <span className="flex items-center">
-              {loadingState ? <>Submit&nbsp;<CircularProgress size={16} sx={{ color: "white" }} /></> : <>Submit&nbsp;<SendIcon className="text-lg flex items-center" /></>}
-            </span>
+              <span className="flex items-center">
+                {loadingState ? (
+                  <>
+                    Submit&nbsp;<CircularProgress size={14} sx={{ color: "white" }} />
+                  </>
+                ) : (
+                  <>
+                    Submit&nbsp;<SendIcon className="text-lg flex items-center" />
+                  </>
+                )}
+              </span>            </span>
           </Button>
         </div>
         <span className={`flex items-center pl-3 text-md font-semibold ${GetResponseCssClass()}`}>{responseMessage}</span>

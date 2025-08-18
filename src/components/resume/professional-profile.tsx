@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { professionalProfile } from "../../app/lib/resume-data";
+
 import { certificationRibbon } from "../../app/lib/certification-data";
+import { professionalProfile } from "../../app/lib/resume-data";
 
 export default function CertificationRibbon() {
 

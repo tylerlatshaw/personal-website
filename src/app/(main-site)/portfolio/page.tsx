@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import PortfolioGallery from "../../../components/portfolio/portfolio-gallery";
 
 export const metadata: Metadata = {

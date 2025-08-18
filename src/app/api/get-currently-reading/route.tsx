@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import supabase from "./../../../utilities/supabase";
-import { CurrentlyReadingResultType } from "../../lib/type-library";
+
+import supabase from "../../../utilities/supabase";
+
+import type { CurrentlyReadingResultType } from "../../lib/type-library";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

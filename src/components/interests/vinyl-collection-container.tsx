@@ -1,9 +1,14 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect } from "react";
-import { VinylResultType } from "../../app/lib/type-library";
+import {
+    useEffect,
+    useState
+} from "react";
+
 import VinylCollectionLoading from "./vinyl-collection-loading";
+
+import type { VinylResultType } from "../../app/lib/type-library";
 
 export default function VinylCollectionContainer() {
 

@@ -1,10 +1,12 @@
 "use client";
 
-import { policyLinks } from "../../app/lib/privacy-policy-links";
-import { PrivacyPolicyText } from "../../app/lib/privacy-policy-text";
+import { useState } from "react";
+
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { Twirl as Hamburger } from "hamburger-react";
-import { useState } from "react";
+
+import { policyLinks } from "../../app/lib/privacy-policy-links";
+import { PrivacyPolicyText } from "../../app/lib/privacy-policy-text";
 
 export default function PrivacyPolicy() {
 

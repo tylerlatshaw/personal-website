@@ -1,11 +1,11 @@
-import HomeIcon from "@mui/icons-material/Home";
-import WorkIcon from "@mui/icons-material/Work";
-import SchoolIcon from "@mui/icons-material/School";
-import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import EmailIcon from "@mui/icons-material/Email";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import HomeIcon from "@mui/icons-material/Home";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import SchoolIcon from "@mui/icons-material/School";
+import WorkIcon from "@mui/icons-material/Work";
 
 import type {
     FooterSocialType,

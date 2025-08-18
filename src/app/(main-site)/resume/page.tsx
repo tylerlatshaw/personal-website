@@ -1,12 +1,13 @@
-import Image from "next/image";
 import { Metadata } from "next";
-import ProfessionalProfile from "../../../components/resume/professional-profile";
-import Education from "../../../components/resume/education";
-import PortfolioLink from "../../../components/resume/portfolio";
-import SkillList from "../../../components/resume/skills";
+import Image from "next/image";
+
 import CertificationList from "../../../components/resume/certifications";
-import JobTimeline from "../../../components/resume/job-timeline";
+import Education from "../../../components/resume/education";
 import InternTimeline from "../../../components/resume/intern-timeline";
+import JobTimeline from "../../../components/resume/job-timeline";
+import PortfolioLink from "../../../components/resume/portfolio";
+import ProfessionalProfile from "../../../components/resume/professional-profile";
+import SkillList from "../../../components/resume/skills";
 import VolunteerTimeline from "../../../components/resume/volunteer-timeline";
 
 export const metadata: Metadata = {

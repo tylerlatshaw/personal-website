@@ -1,8 +1,10 @@
-import Image from "next/image";
-import SvgIcon from "@mui/icons-material/Home";
-import ComingSoonForm from "./components/coming-soon-form";
 import React from "react";
+import Image from "next/image";
+
+import SvgIcon from "@mui/icons-material/Home";
+
 import { footerSocialLinks } from "../lib/navigation-links";
+import ComingSoonForm from "./components/coming-soon-form";
 
 export default function Home() {
 

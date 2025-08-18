@@ -1,5 +1,6 @@
-import { skills } from "../../app/lib/resume-data";
 import { Chip } from "@mui/material";
+
+import { skills } from "../../app/lib/resume-data";
 
 export default function SkillList() {
 

@@ -1,9 +1,20 @@
-import { portfolioCategories, portfolioOptions, portfolioOptionType } from "../../app/lib/portfolio-data";
-import { companyData } from "../../app/lib/resume-data";
 import Image from "next/image";
 import Link from "next/link";
+
+import {
+    SvgIcon,
+    Tooltip
+} from "@mui/material";
+
+import {
+    portfolioCategories,
+    portfolioOptions
+} from "../../app/lib/portfolio-data";
+import { companyData } from "../../app/lib/resume-data";
+import Button from "../ui/button";
 import CreatedForSection from "./created-for-section";
-import { Button, SvgIcon, Tooltip } from "@mui/material";
+
+import type { portfolioOptionType } from "../../app/lib/portfolio-data";
 
 export default function PortfolioGallery() {
 
@@ -73,7 +84,11 @@ export default function PortfolioGallery() {
                         {
                             categories.map((category) => {
                                 return (<div key={category}>
-                                    <Button href={"#" + category} className="button !w-fit !flex !items-center !bg-blue-800 hover:!bg-blue-900 !drop-shadow-xl !shadow-gray-800 !rounded-2xl !text-white !text-center !text-md !font-semibold !px-3 !py-1.5">{category}</Button>
+                                    <Link href={"#" + category}>
+                                        <Button type="button" className="!bg-blue-800 hover:!bg-blue-900 focus:ring-2 focus:outline-none focus:!ring-blue-700 !shadow-lg !shadow-black/40">
+                                            {category}
+                                        </Button>
+                                    </Link>
                                 </div>);
                             })
                         }

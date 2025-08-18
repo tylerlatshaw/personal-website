@@ -1,11 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
-import { educationData, companyData } from "../../app/lib/resume-data";
-import ReactCardFlip from "react-card-flip";
+import Image from "next/image";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, Chip } from "@mui/material";
+import {
+    Button,
+    Chip
+} from "@mui/material";
+import ReactCardFlip from "react-card-flip";
+
+import {
+    companyData,
+    educationData
+} from "../../app/lib/resume-data";
 
 export default function Education() {
 

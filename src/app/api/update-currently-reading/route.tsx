@@ -1,6 +1,8 @@
-import { CurrentlyReadingFormType } from "@/app/lib/type-library";
-import supabase from "../../../utilities/supabase";
 import { NextResponse } from "next/server";
+
+import supabase from "../../../utilities/supabase";
+
+import type { CurrentlyReadingFormType } from "@/app/lib/type-library";
 
 export async function POST(request: Request) {
     try {

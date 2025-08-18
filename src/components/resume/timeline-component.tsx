@@ -1,12 +1,16 @@
 import * as React from "react";
+
 import { Avatar } from "@mui/material";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import Typography from "@mui/material/Typography";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
-import Typography from "@mui/material/Typography";
-import { companyData, jobDataType } from "../../app/lib/resume-data";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+
+import { companyData } from "../../app/lib/resume-data";
+
+import type { jobDataType } from "../../app/lib/resume-data";
 
 export function TimelineComponent(company: jobDataType) {
     return (

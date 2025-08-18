@@ -1,7 +1,14 @@
-import CreatedForSection from "./created-for-section";
-import { companyData } from "../../app/lib/resume-data";
-import { Button, SvgIcon, Tooltip } from "@mui/material";
+import Link from "next/link";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {
+    SvgIcon,
+    Tooltip
+} from "@mui/material";
+
+import { companyData } from "../../app/lib/resume-data";
+import Button from "../ui/button";
+import CreatedForSection from "./created-for-section";
 
 import type { portfolioOptionType } from "../../app/lib/portfolio-data";
 
@@ -18,9 +25,11 @@ export default function DocumentViewer(portfolio: portfolioOptionType) {
                     <h1>{name}</h1>
 
                     <div className="lg:absolute lg:top-0 lg:right-0 w-full lg:w-fit">
-                        <Button className="button !flex !items-center !bg-blue-800 hover:!bg-blue-900 !drop-shadow-xl !rounded-2xl !text-white !text-center !text-md !font-semibold !px-3 !py-1.5 !mt-0 lg:!mt-1 !mb-6 lg:!mb-0" href="/portfolio">
-                            <ArrowBackIcon />&nbsp;Back
-                        </Button>
+                        <Link href="/portfolio">
+                            <Button type="button" className="!bg-blue-800 hover:!bg-blue-900 focus:ring-2 focus:outline-none focus:!ring-blue-700 !shadow-lg !shadow-black/40 !mb-6 lg:!mb-0">
+                                <ArrowBackIcon />&nbsp;Back
+                            </Button>
+                        </Link>
                     </div>
                 </div>
 
@@ -62,11 +71,11 @@ export default function DocumentViewer(portfolio: portfolioOptionType) {
                             <div className="flex flex-col md:flex-row mt-3">
                                 {
                                     webLink !== null ? <div className="text-center md:text-left w-full md:w-fit mr-3 mb-2 md:mb-0">
-                                        <a href={webLink} target="_blank">
-                                            <Button className="button !text-white !bg-blue-800 hover:!bg-blue-900 focus:!ring-2 focus:!outline-none focus:!ring-blue-900 !font-medium !text-base !text-white !rounded-2xl !w-full md:!w-fit !px-5 !py-2.5 !text-center !capitalize">
+                                        <Link href={webLink} target="_blank">
+                                            <Button type="button">
                                                 View {name}
                                             </Button>
-                                        </a>
+                                        </Link>
                                     </div> : null
                                 }
                                 {

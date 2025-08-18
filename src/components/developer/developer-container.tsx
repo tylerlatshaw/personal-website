@@ -1,16 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import ManageEmails from "./developer-emails";
+
+import Hamburger from "hamburger-react";
+
 import GitCommands from "./developer-git-commands";
+import ManageCurrentlyReading from "./developer-manage-currently-reading";
+import ManageEmails from "./developer-emails";
+import ManageVinylCollection from "./developer-manage-vinyl-collection";
 import NetlifyCommands from "./developer-netlify-commands";
 import NodeCommands from "./developer-node-commands";
+import SupabaseCommands from "./developer-supabase-commands";
 
 import type { DeveloperItemType } from "../../app/lib/type-library";
-import Hamburger from "hamburger-react";
-import SupabaseCommands from "./developer-supabase-commands";
-import ManageVinylCollection from "./developer-manage-vinyl-collection";
-import ManageCurrentlyReading from "./developer-manage-currently-reading";
 
 export default function DeveloperContainer() {
 
@@ -54,7 +56,7 @@ export default function DeveloperContainer() {
 
   const [activeIndex, setActiveIndex] = useState<number>(1);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [activePageName, setActivePageName] = useState<string>(modules[0].title);
+  const [activePageName, setActivePageName] = useState<string>(modules[1].title);
 
   const desktopActiveClasses = "w-full py-6 bg-gray-800 border-l-8 border-y-2 border-green-600 border-r-2 border-r-transparent first:rounded-tl-lg last:rounded-bl-lg cursor-default";
   const desktopInactiveClasses = "w-full py-6 bg-gray-600 border-l-8 border-l-transparent border-r-2 border-green-600 border-t-2 border-t-gray-500 first:border-t-transparent border-b-2 border-b-transparent hover:bg-green-600 hover:border-y-green-600 hover:text-white first:rounded-tl-lg last:rounded-bl-lg";

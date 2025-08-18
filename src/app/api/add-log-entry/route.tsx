@@ -1,5 +1,6 @@
-import supabase from "./../../../utilities/supabase";
 import { NextResponse } from "next/server";
+
+import supabase from "../../../utilities/supabase";
 
 type Data = {
     totalBooks: number,

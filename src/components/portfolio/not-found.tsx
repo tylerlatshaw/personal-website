@@ -1,4 +1,8 @@
-import { Alert, AlertTitle } from "@mui/material";
+import {
+    Alert,
+    AlertTitle
+} from "@mui/material";
+
 import PortfolioGallery from "./portfolio-gallery";
 
 export default function NotFound() {

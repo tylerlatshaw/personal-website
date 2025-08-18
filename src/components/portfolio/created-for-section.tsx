@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import type { companyDataType } from "../../app/lib/resume-data";
 
 export default function CreatedForSection(organization: companyDataType) {

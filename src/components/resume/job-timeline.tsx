@@ -1,7 +1,8 @@
-import { jobData } from "../../app/lib/resume-data";
-import { TimelineComponent } from "./timeline-component";
 import Timeline from "@mui/lab/Timeline";
 import { timelineItemClasses } from "@mui/lab/TimelineItem";
+
+import { jobData } from "../../app/lib/resume-data";
+import { TimelineComponent } from "./timeline-component";
 
 export default function JobTimeline() {
 
