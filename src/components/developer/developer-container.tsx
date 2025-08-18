@@ -54,7 +54,7 @@ export default function DeveloperContainer() {
 
   const [activeIndex, setActiveIndex] = useState<number>(1);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [activePageName, setActivePageName] = useState<string>(modules[0].title);
+  const [activePageName, setActivePageName] = useState<string>(modules[1].title);
 
   const desktopActiveClasses = "w-full py-6 bg-gray-800 border-l-8 border-y-2 border-green-600 border-r-2 border-r-transparent first:rounded-tl-lg last:rounded-bl-lg cursor-default";
   const desktopInactiveClasses = "w-full py-6 bg-gray-600 border-l-8 border-l-transparent border-r-2 border-green-600 border-t-2 border-t-gray-500 first:border-t-transparent border-b-2 border-b-transparent hover:bg-green-600 hover:border-y-green-600 hover:text-white first:rounded-tl-lg last:rounded-bl-lg";

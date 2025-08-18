@@ -41,6 +41,7 @@
     "react-select": "^5.8.0",
     "react-textarea-autosize": "^8.5.3",
     "resend": "^4.0.0",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.11",
     "uuid": "^11.1.0"
   },

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import RootLayout from "./(main-site)/layout";
 import FolderOffOutlinedIcon from "@mui/icons-material/FolderOffOutlined";
-import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import Button from "./../components/ui/button";
 
 export default function NotFound() {
     return <>
@@ -16,7 +16,7 @@ export default function NotFound() {
                         </div>
 
                         <div className="self-center text-center mt-6">
-                            <FolderOffOutlinedIcon className="text-[6rem] md:text-[9rem] leading-none my-8 md:m-0" />
+                            <FolderOffOutlinedIcon className="!text-[6rem] md:!text-[9rem] !leading-none !my-8 md:!m-0" />
                             <h2 className="w-full text-4xl md:text-5xl mt-6 leading-none font-bold no-underline">Page Not Found</h2>
                         </div>
 
@@ -24,7 +24,7 @@ export default function NotFound() {
 
                     <div className="flex justify-center w-full mt-24 mb-8 md:mt-32 md:mb-0">
                         <Link href="/" className="drop-shadow-lg">
-                            <Button className="button text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-900 font-medium rounded-lg text-2xl px-5 py-2.5 text-center">
+                            <Button className="!bg-blue-700 hover:!bg-blue-800 focus:!ring-2 focus:!outline-none focus:!ring-blue-900 !text-2xl !shadow-lg !shadow-black/40">
                                 <span className="flex items-center">
                                     <>Go Back Home&nbsp;<SendIcon className="text-lg flex items-center" /></>
                                 </span>
