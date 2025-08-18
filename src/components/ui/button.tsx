@@ -1,5 +1,8 @@
 import React from "react";
-import MuiButton, { ButtonProps as MuiButtonProps } from "@mui/material/Button";
+
+import MuiButton, {
+    ButtonProps as MuiButtonProps
+} from "@mui/material/Button";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 

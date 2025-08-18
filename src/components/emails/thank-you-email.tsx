@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import {
     Body,
     Button,
@@ -9,10 +11,9 @@ import {
     Link,
     Preview,
     Section,
-    Text,
-    Tailwind
+    Tailwind,
+    Text
 } from "@react-email/components";
-import * as React from "react";
 
 interface EmailVariables {
     messageData: {

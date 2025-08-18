@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { navigationLinks } from "../../app/lib/navigation-links";
 import MobileNavigation from "./mobile-navigation";
 

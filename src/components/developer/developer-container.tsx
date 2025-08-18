@@ -1,16 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import ManageEmails from "./developer-emails";
+
+import Hamburger from "hamburger-react";
+
 import GitCommands from "./developer-git-commands";
+import ManageCurrentlyReading from "./developer-manage-currently-reading";
+import ManageEmails from "./developer-emails";
+import ManageVinylCollection from "./developer-manage-vinyl-collection";
 import NetlifyCommands from "./developer-netlify-commands";
 import NodeCommands from "./developer-node-commands";
+import SupabaseCommands from "./developer-supabase-commands";
 
 import type { DeveloperItemType } from "../../app/lib/type-library";
-import Hamburger from "hamburger-react";
-import SupabaseCommands from "./developer-supabase-commands";
-import ManageVinylCollection from "./developer-manage-vinyl-collection";
-import ManageCurrentlyReading from "./developer-manage-currently-reading";
 
 export default function DeveloperContainer() {
 

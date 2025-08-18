@@ -1,14 +1,17 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-import ComingSoonOnList from "./../../../components/emails/coming-soon-on-the-list";
-import ComingSoonSiteLive from "./../../../components/emails/coming-soon-site-is-live";
-import MessageReceived from "./../../../components/emails/new-message-received";
-import ThankYouEmail from "./../../../components/emails/thank-you-email";
+import ComingSoonOnList from "../../../components/emails/coming-soon-on-the-list";
+import ComingSoonSiteLive from "../../../components/emails/coming-soon-site-is-live";
+import MessageReceived from "../../../components/emails/new-message-received";
+import ThankYouEmail from "../../../components/emails/thank-you-email";
 
-import { getCurrentDate, getCurrentDateTime } from "./../../../utilities/date-utilities";
+import {
+    getCurrentDate,
+    getCurrentDateTime
+} from "../../../utilities/date-utilities";
 
-import type { EmailFormType } from "./../../lib/type-library";
+import type { EmailFormType } from "../../lib/type-library";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromAddress = process.env.RESEND_FROM;

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import DeveloperContainer from "../../../components/developer/developer-container";
 
 export const metadata: Metadata = {

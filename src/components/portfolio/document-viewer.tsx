@@ -1,11 +1,16 @@
-import CreatedForSection from "./created-for-section";
-import { companyData } from "../../app/lib/resume-data";
-import { SvgIcon, Tooltip } from "@mui/material";
+import Link from "next/link";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {
+    SvgIcon,
+    Tooltip
+} from "@mui/material";
+
+import { companyData } from "../../app/lib/resume-data";
+import Button from "../ui/button";
+import CreatedForSection from "./created-for-section";
 
 import type { portfolioOptionType } from "../../app/lib/portfolio-data";
-import Link from "next/link";
-import Button from "../ui/button";
 
 export default function DocumentViewer(portfolio: portfolioOptionType) {
 

@@ -1,12 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import router from "next/router";
-import { useState } from "react";
-import { mobileLinkIcons, navigationLinks } from "../../app/lib/navigation-links";
+
 import HomeIcon from "@mui/icons-material/Home";
 import SvgIcon from "@mui/icons-material/Home";
 import { Twirl as Hamburger } from "hamburger-react";
+
+import {
+    mobileLinkIcons,
+    navigationLinks
+} from "../../app/lib/navigation-links";
 
 function lookupMobileIcon(pageName: string) {
     return mobileLinkIcons.find(mobileLinkIcons => mobileLinkIcons.display === pageName)?.icon ?? HomeIcon;

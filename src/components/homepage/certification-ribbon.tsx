@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { certificationRibbon } from "../../app/lib/certification-data";
 
 export default function CertificationRibbon() {

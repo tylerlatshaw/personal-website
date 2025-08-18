@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import supabase from "./../../../utilities/supabase";
-import { VinylResultType } from "../../lib/type-library";
+
+import supabase from "../../../utilities/supabase";
+
+import type { VinylResultType } from "../../lib/type-library";
 
 export async function GET() {
     try {

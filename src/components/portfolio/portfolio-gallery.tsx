@@ -1,10 +1,20 @@
-import { portfolioCategories, portfolioOptions, portfolioOptionType } from "../../app/lib/portfolio-data";
-import { companyData } from "../../app/lib/resume-data";
 import Image from "next/image";
 import Link from "next/link";
-import CreatedForSection from "./created-for-section";
-import { SvgIcon, Tooltip } from "@mui/material";
+
+import {
+    SvgIcon,
+    Tooltip
+} from "@mui/material";
+
+import {
+    portfolioCategories,
+    portfolioOptions
+} from "../../app/lib/portfolio-data";
+import { companyData } from "../../app/lib/resume-data";
 import Button from "../ui/button";
+import CreatedForSection from "./created-for-section";
+
+import type { portfolioOptionType } from "../../app/lib/portfolio-data";
 
 export default function PortfolioGallery() {
 

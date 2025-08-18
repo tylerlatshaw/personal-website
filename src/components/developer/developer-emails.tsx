@@ -1,15 +1,20 @@
 "use client";
 
-import axios from "axios";
 import { useState } from "react";
+
+import axios from "axios";
+import { CircularProgress } from "@mui/material/";
+import SendIcon from "@mui/icons-material/Send";
 import { SubmitHandler, useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
-import SendIcon from "@mui/icons-material/Send";
-import { CircularProgress } from "@mui/material/";
-import { inputStyles, inputLabelStyles } from "./dropdown-configuration";
-import Button from "../ui/button";
 
-import type { EmailFormType } from "./../../app/lib/type-library";
+import Button from "../ui/button";
+import {
+    inputLabelStyles,
+    inputStyles
+} from "./dropdown-configuration";
+
+import type { EmailFormType } from "../../app/lib/type-library";
 
 export type TemplateOptions = "CS-OnList" | "CS-SiteLive" | "NewMessage" | "AutoReply";
 type SubmitState = "Idle" | "Success" | "Error";

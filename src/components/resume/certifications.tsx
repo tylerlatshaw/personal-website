@@ -1,6 +1,10 @@
 import Image from "next/image";
-import { certificationRibbon, certificationRibbonType } from "../../app/lib/certification-data";
+
 import { Card } from "@mui/material";
+
+import { certificationRibbon } from "../../app/lib/certification-data";
+
+import type { certificationRibbonType } from "../../app/lib/certification-data";
 
 export default function CertificationsList() {
 

@@ -1,12 +1,18 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { CurrentlyReadingResultType } from "../../app/lib/type-library";
+import {
+    useEffect,
+    useState
+} from "react";
+
+import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
 import { LinearProgress } from "@mui/material";
 import dayjs from "dayjs";
-import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
-import { useEffect, useState } from "react";
+
 import CurrentlyReadingLoading from "./currently-reading-loading";
+
+import type { CurrentlyReadingResultType } from "../../app/lib/type-library";
 
 export default function CurrentlyReadingContainer() {
 

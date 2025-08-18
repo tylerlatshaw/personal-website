@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import * as Sentry from "@sentry/nextjs";
+
+import type { Metadata } from "next";
 
 const description = "Tyler Latshaw is a professionally-certified Scrum Master with years of experience in project management, web design, leadership, and mentoring.";
 

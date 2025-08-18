@@ -1,14 +1,15 @@
 "use client";
 
+import React, { useState } from "react";
+
 import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import SendIcon from "@mui/icons-material/Send";
 import { CircularProgress } from "@mui/material/";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import Button from "../ui/button";
 
 import type { ContactDataType } from "../../app/lib/type-library";
-import Button from "../ui/button";
 
 type SubmitState = "Idle" | "Success" | "Error";
 type FormInputs = {

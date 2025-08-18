@@ -1,6 +1,7 @@
-import CurrentlyReadingContainer from "./../../components/interests/currently-reading-container";
-import VinylRecordContainer from "./vinyl-collection-container";
 import { Chip } from "@mui/material";
+
+import CurrentlyReadingContainer from "../../components/interests/currently-reading-container";
+import VinylRecordContainer from "./vinyl-collection-container";
 
 export default function InterestsContainer() {
 

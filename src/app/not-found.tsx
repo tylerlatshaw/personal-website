@@ -1,8 +1,10 @@
 import Link from "next/link";
-import RootLayout from "./(main-site)/layout";
+
 import FolderOffOutlinedIcon from "@mui/icons-material/FolderOffOutlined";
 import SendIcon from "@mui/icons-material/Send";
-import Button from "./../components/ui/button";
+
+import Button from "../components/ui/button";
+import RootLayout from "./(main-site)/layout";
 
 export default function NotFound() {
     return <>

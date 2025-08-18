@@ -1,5 +1,6 @@
-import InterestsContainer from "@/components/interests/page-container";
 import { Metadata } from "next";
+
+import InterestsContainer from "@/components/interests/page-container";
 
 export const metadata: Metadata = {
     title: "My Interests",
