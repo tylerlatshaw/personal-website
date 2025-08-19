@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import Hamburger from "hamburger-react";
 
+import CalculateTimeComplete from "./developer-calculate-time";
 import GitCommands from "./developer-git-commands";
 import ManageCurrentlyReading from "./developer-manage-currently-reading";
 import ManageEmails from "./developer-emails";
@@ -28,29 +29,34 @@ export default function DeveloperContainer() {
       index: 1
     },
     {
+      title: "Calculate Time Complete",
+      content: <CalculateTimeComplete />,
+      index: 2
+    },
+    {
       title: "Manage Vinyl Collection",
       content: <ManageVinylCollection />,
-      index: 2
+      index: 3
     },
     {
       title: "Git CLI Commands",
       content: <GitCommands />,
-      index: 3
+      index: 4
     },
     {
       title: "Netlify CLI Commands",
       content: <NetlifyCommands />,
-      index: 4
+      index: 5
     },
     {
       title: "Node CLI Commands",
       content: <NodeCommands />,
-      index: 5
+      index: 6
     },
     {
       title: "Supabase CLI Commands",
       content: <SupabaseCommands />,
-      index: 6
+      index: 7
     },
   ];
 
