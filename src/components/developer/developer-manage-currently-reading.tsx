@@ -1,18 +1,18 @@
 "use client";
 
 import {
-    useEffect,
-    useState
+  useEffect,
+  useState
 } from "react";
 import Image from "next/image";
 
 import { CircularProgress } from "@mui/material/";
 import PhotoIcon from "@mui/icons-material/Photo";
 import SendIcon from "@mui/icons-material/Send";
-import { 
-  Controller, 
-  SubmitHandler, 
-  useForm 
+import {
+  Controller,
+  SubmitHandler,
+  useForm
 } from "react-hook-form";
 import { components } from "react-select";
 import CreatableSelect from "react-select/creatable";
@@ -21,14 +21,14 @@ import { v4 as uuidv4 } from "uuid";
 import Button from "../ui/button";
 import noDataFound from "../global-components/no-data";
 import {
-    dropdownStyles,
-    inputLabelStyles,
-    inputStyles
+  dropdownStyles,
+  inputLabelStyles,
+  inputStyles
 } from "./dropdown-configuration";
 
 import type {
-    CurrentlyReadingFormType,
-    CurrentlyReadingResultType
+  CurrentlyReadingFormType,
+  CurrentlyReadingResultType
 } from "../../app/lib/type-library";
 
 type SubmitState = "Idle" | "Success" | "Error";
@@ -74,9 +74,12 @@ export default function ManageCurrentlyReading() {
         if (!res.ok) throw new Error("Failed to fetch books");
         const json: CurrentlyReadingResultType[] = await res.json();
         json.sort((a, b) => {
-          if (a.name < b.name) return -1;
-          if (a.name > b.name) return 1;
-          return 0;
+          // Incomplete before complete
+          if (a.dateCompleted === null && b.dateCompleted !== null) return -1;
+          if (a.dateCompleted !== null && b.dateCompleted === null) return 1;
+
+          // If both same completion status, sort alphabetically by name
+          return a.name.localeCompare(b.name);
         });
         setAllBooks(json);
         setBookOptions(json.map((b) => ({ value: b.id, label: b.name })));
@@ -189,6 +192,24 @@ export default function ManageCurrentlyReading() {
               styles={dropdownStyles}
               components={{
                 Input: (props) => <components.Input {...props} maxLength={120} />,
+                Option: (props) => {
+                  const book = allBooks.find((b) => b.id === props.data.value);
+                  const isComplete =
+                    book && (book.dateCompleted || book.percentComplete === 100);
+
+                  return (
+                    <components.Option {...props}>
+                      <span
+                        style={{
+                          opacity: isComplete ? 0.5 : 1,
+                          fontStyle: isComplete ? "italic" : "normal",
+                        }}
+                      >
+                        {props.data.label}
+                      </span>
+                    </components.Option>
+                  );
+                },
               }}
               onChange={(opt) => {
                 const newId = opt?.value ?? undefined;

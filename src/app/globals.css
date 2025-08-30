@@ -445,6 +445,10 @@ h2 {
   font-size: 1.5rem;
 }
 
+.disable-tap-zoom {
+  touch-action: manipulation;
+}
+
 
 /*******************************/
 /*****
@@ -700,7 +704,7 @@ input:-webkit-autofill:active {
 }
 
 ::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+  filter: invert(1);
 }
 
 .developer-module table {
