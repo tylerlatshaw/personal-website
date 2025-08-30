@@ -52,7 +52,7 @@ export default function CalculateTimeComplete() {
     v === null ? null : opts.find(o => o.value === v) ?? null;
 
   return (
-    <div className="developer-module">
+    <div className="developer-module disable-tap-zoom">
       <h2>Calculate Time Complete</h2>
 
       <div className="flex flex-col flex-wrap w-full md:!w-2/3 mx-auto mt-1 developer-tools-form gap-8">
@@ -65,6 +65,7 @@ export default function CalculateTimeComplete() {
               className="w-full"
               styles={dropdownStyles}
               isClearable
+              isSearchable={false}
               isMulti={false}
               options={hoursOptions}
               placeholder="Hours"
@@ -72,12 +73,13 @@ export default function CalculateTimeComplete() {
               noOptionsMessage={() => noDataFound("Values")}
               onChange={(opt) => setHoursRemain(opt?.value ?? null)}
             />
-            <span>:</span>
+            <span className="text-lg font-bold">:</span>
             <Select
               name="minutesRemain"
               className="w-full"
               styles={dropdownStyles}
               isClearable
+              isSearchable={false}
               isMulti={false}
               options={minSecOptions}
               placeholder="Minutes"
@@ -85,12 +87,13 @@ export default function CalculateTimeComplete() {
               noOptionsMessage={() => noDataFound("Values")}
               onChange={(opt) => setMinutesRemain(opt?.value ?? null)}
             />
-            <span>:</span>
+            <span className="text-lg font-bold">:</span>
             <Select
               name="secondsRemain"
               className="w-full"
               styles={dropdownStyles}
               isClearable
+              isSearchable={false}
               isMulti={false}
               options={minSecOptions}
               placeholder="Seconds"
@@ -109,6 +112,7 @@ export default function CalculateTimeComplete() {
               className="w-full"
               styles={dropdownStyles}
               isClearable
+              isSearchable={false}
               isMulti={false}
               options={hoursOptions}
               placeholder="Hours"
@@ -116,12 +120,13 @@ export default function CalculateTimeComplete() {
               noOptionsMessage={() => noDataFound("Values")}
               onChange={(opt) => setHoursTotal(opt?.value ?? null)}
             />
-            <span>:</span>
+            <span className="text-lg font-bold">:</span>
             <Select
               name="minutesTotal"
               className="w-full"
               styles={dropdownStyles}
               isClearable
+              isSearchable={false}
               isMulti={false}
               options={minSecOptions}
               placeholder="Minutes"
@@ -129,12 +134,13 @@ export default function CalculateTimeComplete() {
               noOptionsMessage={() => noDataFound("Values")}
               onChange={(opt) => setMinutesTotal(opt?.value ?? null)}
             />
-            <span>:</span>
+            <span className="text-lg font-bold">:</span>
             <Select
               name="secondsTotal"
               className="w-full"
               styles={dropdownStyles}
               isClearable
+              isSearchable={false}
               isMulti={false}
               options={minSecOptions}
               placeholder="Seconds"
