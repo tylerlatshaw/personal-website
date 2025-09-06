@@ -1,6 +1,6 @@
-import CertificationRibbon from "../../../components/homepage/certification-ribbon";
-import MainInfoSection from "../../../components/homepage/main-info";
-import QuickPages from "../../../components/homepage/quick-pages";
+import CertificationRibbon from "../../components/homepage/certification-ribbon";
+import MainInfoSection from "../../components/homepage/main-info";
+import QuickPages from "../../components/homepage/quick-pages";
 
 export default function Page() {
   return <>
