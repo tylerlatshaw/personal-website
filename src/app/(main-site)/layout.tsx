@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
     return (
         <>
-            <body className="leading-normal tracking-normal text-white bg-cover bg-fixed min-h-screen" suppressHydrationWarning={true}>
+            <body className="leading-normal tracking-normal text-black dark:text-white bg-cover bg-fixed min-h-screen" suppressHydrationWarning={true}>
                 <main>
                     <Navigation />
                     {children}

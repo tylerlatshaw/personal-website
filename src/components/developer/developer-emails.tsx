@@ -189,7 +189,7 @@ export default function ManageEmails() {
             {emailTemplate.sort((a, b) => a.text.localeCompare(b.text)).map((button) =>
               <div key={button.value}>
                 <input {...register("selection")} id={button.value} value={button.value} type="radio" className="hidden peer" required disabled={loadingState} />
-                <label htmlFor={button.value} className="flex items-center w-full px-4 py-3 rounded-lg cursor-pointer text-gray-200 bg-gray-800 border border-gray-200 hover:text-gray-300 hover:bg-gray-900 hover:border-gray-300 peer-checked:text-green-600 peer-checked:border-green-600">
+                <label htmlFor={button.value} className="flex items-center w-full px-4 py-3 rounded-lg cursor-pointer text-black dark:text-gray-200 bg-gray-100 dark:bg-gray-800 border border-gray-800 dark:border-gray-200 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-900 hover:border-gray-300 peer-checked:text-green-600 peer-checked:border-green-600 peer-checked:bg-green-50 dark:peer-checked:bg-gray-800">
                   {button.text}
                 </label>
               </div>

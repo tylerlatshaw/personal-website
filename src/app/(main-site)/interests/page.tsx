@@ -11,7 +11,7 @@ export default function Page() {
     return <>
         <div className="h-full px-4 md:px-0 mb-16 md:mb-40">
             <div className="container flex flex-wrap mx-auto pt-28 md:pt-36">
-
+                
                 <h1>My Interests</h1>
 
                 <div className="flex w-3/5 mx-auto mb-8">
@@ -19,7 +19,6 @@ export default function Page() {
                 </div>
 
                 <InterestsContainer />
-
             </div>
         </div>
     </>;

@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import Hamburger from "hamburger-react";
+import { useTheme } from "next-themes";
 
 import CalculateTimeComplete from "./developer-calculate-time";
 import GitCommands from "./developer-git-commands";
@@ -60,43 +61,46 @@ export default function DeveloperContainer() {
     },
   ];
 
+  const { theme } = useTheme();
+
   const [activeIndex, setActiveIndex] = useState<number>(1);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activePageName, setActivePageName] = useState<string>(modules[1].title);
 
-  const desktopActiveClasses = "w-full py-6 bg-gray-800 border-l-8 border-y-2 border-green-600 border-r-2 border-r-transparent first:rounded-tl-lg last:rounded-bl-lg cursor-default";
-  const desktopInactiveClasses = "w-full py-6 bg-gray-600 border-l-8 border-l-transparent border-r-2 border-green-600 border-t-2 border-t-gray-500 first:border-t-transparent border-b-2 border-b-transparent hover:bg-green-600 hover:border-y-green-600 hover:text-white first:rounded-tl-lg last:rounded-bl-lg";
+  const desktopActiveClasses = "w-full py-6 bg-white dark:bg-gray-800 border-l-8 border-y-2 border-green-600 border-r-2 border-r-transparent first:rounded-tl-lg last:rounded-bl-lg cursor-default";
+  const desktopInactiveClasses = "w-full py-6 bg-gray-300 dark:bg-gray-600 border-l-8 border-l-transparent border-r-2 border-green-600 border-t-2 border-t-gray-400 dark:border-t-gray-500 first:border-t-transparent border-b-2 border-b-transparent hover:bg-green-600 dark:hover:bg-green-600 hover:border-y-green-600 hover:text-white first:rounded-tl-lg last:rounded-bl-lg";
 
   const mobileActiveClasses = "flex items-center w-full bg-green-600 text-white hover:bg-green-600 hover:text-white last:rounded-b-lg cursor-default";
-  const mobileInactiveClasses = "flex items-center w-full bg-gray-600 hover:bg-green-600 hover:text-white last:rounded-b-lg";
+  const mobileInactiveClasses = "flex items-center w-full bg-gray-300 dark:bg-gray-600 hover:bg-green-600 dark:hover:bg-green-600 hover:text-white dark:hover:text-white last:rounded-b-lg";
+
+  const hamburgerOpenColor = "#16a34a";
+  const hamburgerClosedColor = theme === "dark" ? "#ffffff" : "#000000";
 
   return (
     <>
-      <div className="flex flex-col md:flex-row w-full">
+      <div className="flex flex-col md:flex-row w-full drop-shadow-lg">
         <div className="z-10 desktop-only flex flex-col w-full md:w-1/5">
-          <div className="shadow-lg shadow-gray-800">
-
+          <div>
             {modules.map((module) => {
               if (module.index === activeIndex)
                 return <button key={module.title} onClick={() => setActiveIndex(module.index)} className={desktopActiveClasses}>{module.title}</button>;
               else
                 return <button key={module.title} onClick={() => setActiveIndex(module.index)} className={desktopInactiveClasses}>{module.title}</button>;
             })}
-
           </div>
           <div className="w-full h-full border-r-2 border-green-600">
           </div>
         </div>
 
-        <div className="mobile-only mb-6 border-2 border-green-600 bg-gray-800 rounded-lg">
+        <div className="mobile-only mb-6 border-2 border-green-600 bg-white dark:bg-gray-800 rounded-lg">
           <div className={"w-full pl-3 pr-1 text-left" + (isOpen ? " rounded-t-lg" : " rounded-lg")}>
             <span className="flex flex-row font-semibold">
               <div className="flex items-center basis-full">
                 <span>Navigation</span>
-                <span className="text-gray-400">&nbsp;/ {activePageName}</span>
+                <span className="text-gray-400 dark:text-gray-400">&nbsp;/ {activePageName}</span>
               </div>
-              <span className="flex items-center">
-                <Hamburger toggled={isOpen} toggle={setIsOpen} size={18} rounded label="Show menu" color={isOpen ? "#16a34a" : "#FFFFFF"} hideOutline={false} />
+              <span className={"flex items-center text-black " + isOpen ? "text-[#16a34a]" : "text-blacktext-[#FFFFFF]"}>
+                <Hamburger toggled={isOpen} toggle={setIsOpen} size={18} rounded label="Show menu" color={isOpen ? hamburgerOpenColor : hamburgerClosedColor} hideOutline={false} />
               </span>
             </span>
           </div>
@@ -121,7 +125,7 @@ export default function DeveloperContainer() {
           </> : null}
         </div>
 
-        <div className="z-20 bg-gray-800 shadow-lg shadow-gray-800 w-full md:w-4/5 px-6 md:px-12 py-4 border-2 md:border-y-2 md:border-r-2 md:border-l-0 border-green-600 rounded-lg md:rounded-l-none mx-auto">
+        <div className="z-20 bg-white dark:bg-gray-800 w-full md:w-4/5 px-6 md:px-12 py-4 border-2 md:border-y-2 md:border-r-2 md:border-l-0 border-green-600 rounded-lg md:rounded-l-none mx-auto">
           <div className="w-full mx-auto my-8">
             {
               modules.map((module) => {

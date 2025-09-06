@@ -26,7 +26,7 @@ export default function NotFound() {
 
                     <div className="flex justify-center w-full mt-24 mb-8 md:mt-32 md:mb-0">
                         <Link href="/" className="drop-shadow-lg">
-                            <Button className="!bg-blue-700 hover:!bg-blue-800 focus:!ring-2 focus:!outline-none focus:!ring-blue-900 !text-2xl !shadow-lg !shadow-black/40">
+                            <Button className="!bg-blue-700 hover:!bg-blue-800 dark:!bg-blue-700 dark:hover:!bg-blue-800 focus:!ring-2 focus:!outline-none focus:!ring-blue-900 dark:focus:!ring-blue-900 !text-2xl !shadow-lg !shadow-black/40">
                                 <span className="flex items-center">
                                     <>Go Back Home&nbsp;<SendIcon className="text-lg flex items-center" /></>
                                 </span>

@@ -3,6 +3,8 @@ import * as Sentry from "@sentry/nextjs";
 
 import type { Metadata } from "next";
 
+import Providers from "./providers";
+
 const description = "Tyler Latshaw is a professionally-certified Scrum Master with years of experience in project management, web design, leadership, and mentoring.";
 
 const GA_ID = process.env.GA_ID;
@@ -57,7 +59,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </head>
-      {children}
+      <Providers>{children}</Providers>
       <GoogleAnalytics gaId={GA_ID!} />
     </html>
   );

@@ -14,7 +14,6 @@ export default function Page() {
                 <h1>Portfolio</h1>
 
                 <PortfolioGallery />
-
             </div>
         </div>
     </>;

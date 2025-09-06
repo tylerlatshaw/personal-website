@@ -21,9 +21,9 @@ import { v4 as uuidv4 } from "uuid";
 import Button from "../ui/button";
 import noDataFound from "../global-components/no-data";
 import {
-  dropdownStyles,
   inputLabelStyles,
-  inputStyles
+  inputStyles,
+  selectClassNames
 } from "./dropdown-configuration";
 
 import type {
@@ -189,7 +189,7 @@ export default function ManageCurrentlyReading() {
               isMulti={false}
               isLoading={optionsLoading}
               noOptionsMessage={() => noDataFound("Books")}
-              styles={dropdownStyles}
+              classNames={selectClassNames}
               components={{
                 Input: (props) => <components.Input {...props} maxLength={120} />,
                 Option: (props) => {
@@ -249,9 +249,9 @@ export default function ManageCurrentlyReading() {
               <div className="flex flex-row items-center mt-6 gap-8">
                 <label
                   htmlFor="fileUpload"
-                  className="flex flex-col items-center justify-center h-32 w-1/2 rounded-lg border border-white bg-white/10 px-3 py-1 text-sm shadow-sm transition-colors cursor-pointer hover:bg-white/20"
+                  className="flex flex-col items-center justify-center h-32 w-1/2 rounded-lg border border-gray-500 dark:border-white bg-black/10 dark:bg-white/10 px-3 py-1 text-sm shadow-sm transition-colors cursor-pointer hover:bg-black/20 dark:hover:bg-white/20"
                 >
-                  <span className="text-center text-white">Click to Upload</span>
+                  <span className="text-center">Click to Upload</span>
                 </label>
 
                 {

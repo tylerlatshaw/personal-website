@@ -1,18 +1,18 @@
 "use client";
 
 import {
-    useEffect,
-    useState
+  useEffect,
+  useState
 } from "react";
 import Image from "next/image";
 
 import { CircularProgress } from "@mui/material/";
 import PhotoIcon from "@mui/icons-material/Photo";
 import SendIcon from "@mui/icons-material/Send";
-import { 
-  Controller, 
-  SubmitHandler, 
-  useForm 
+import {
+  Controller,
+  SubmitHandler,
+  useForm
 } from "react-hook-form";
 import { components } from "react-select";
 import CreatableSelect from "react-select/creatable";
@@ -21,14 +21,14 @@ import { v4 as uuidv4 } from "uuid";
 import Button from "../ui/button";
 import noDataFound from "../global-components/no-data";
 import {
-    dropdownStyles,
-    inputLabelStyles,
-    inputStyles
+  inputLabelStyles,
+  inputStyles,
+  selectClassNames
 } from "./dropdown-configuration";
 
 import type {
-    VinylFormType,
-    VinylResultType
+  VinylFormType,
+  VinylResultType
 } from "../../app/lib/type-library";
 
 type SubmitState = "Idle" | "Success" | "Error";
@@ -185,7 +185,7 @@ export default function ManageVinylCollection() {
               isMulti={false}
               isLoading={optionsLoading}
               noOptionsMessage={() => noDataFound("Records")}
-              styles={dropdownStyles}
+              classNames={selectClassNames}
               components={{
                 Input: (props) => <components.Input {...props} maxLength={120} />,
               }}
@@ -223,9 +223,9 @@ export default function ManageVinylCollection() {
               <div className="flex flex-row items-center mt-6 gap-8">
                 <label
                   htmlFor="fileUpload"
-                  className="flex flex-col items-center justify-center h-32 w-1/2 rounded-lg border border-white bg-white/10 px-3 py-1 text-sm shadow-sm transition-colors cursor-pointer hover:bg-white/20"
+                  className="flex flex-col items-center justify-center h-32 w-1/2 rounded-lg border border-gray-500 dark:border-white bg-black/10 dark:bg-white/10 px-3 py-1 text-sm shadow-sm transition-colors cursor-pointer hover:bg-black/20 dark:hover:bg-white/20"
                 >
-                  <span className="text-center text-white">Click to Upload</span>
+                  <span className="text-center">Click to Upload</span>
                 </label>
 
                 {
@@ -233,7 +233,7 @@ export default function ManageVinylCollection() {
                     ? <Image src={filePreview} width={128} height={128} alt={"File Preview"} className="rounded-lg" priority={false} />
                     : existingFilepath != ""
                       ? <Image src={existingFilepath} width={128} height={128} alt={"File Preview"} className="rounded-lg" priority={false} />
-                      : <div className="flex flex-col items-center justify-center border border-green-500 rounded-lg bg-green-500/10 w-[82px] h-32 aspect-square text-green-500">
+                      : <div className="flex flex-col items-center justify-center border border-green-500 rounded-lg bg-green-500/10 w-32 h-32 aspect-square text-green-500">
                         <PhotoIcon />
                       </div>
                 }

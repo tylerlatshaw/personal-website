@@ -23,7 +23,7 @@ export default function Page() {
 
                 <div className="flex flex-col lg:flex-row justify-evenly items-center">
                     <div className="basis-2/5 flex flex-row justify-evenly items-center">
-                        <Image src="/static/resume/tyler_latshaw_headshot.png" width={750} height={938} alt="Tyler Latshaw" className={"w-3/5 mx-auto border-solid border-8 border-black shadow-xl shadow-black/40"} id="tyler_latshaw_headshot" priority={true} />
+                        <Image src="/static/resume/tyler_latshaw_headshot.png" width={750} height={938} alt="Tyler Latshaw" className={"w-3/5 mx-auto border-solid border-8 border-black shadow-xl shadow-black/20 dark:shadow-black/40"} id="tyler_latshaw_headshot" priority={true} />
                     </div>
 
                     <div className="basis-2/3 flex flex-row justify-evenly items-center">
@@ -64,7 +64,6 @@ export default function Page() {
                     <h2>Volunteerism</h2>
                     <VolunteerTimeline />
                 </div>
-
             </div>
         </div>
     </>;

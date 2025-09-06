@@ -18,7 +18,6 @@ export default function Page() {
                 <Suspense fallback={<PrivacyPolicyLoading />}>
                     <PrivacyPolicy />
                 </Suspense>
-
             </div>
         </div>
     </>;

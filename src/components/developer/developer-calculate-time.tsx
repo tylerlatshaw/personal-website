@@ -8,8 +8,8 @@ import {
 
 import Select from "react-select";
 
-import { dropdownStyles } from "./dropdown-configuration";
 import noDataFound from "../global-components/no-data";
+import { selectClassNames } from "./dropdown-configuration";
 
 type SelectOption = { value: number; label: string };
 
@@ -63,7 +63,7 @@ export default function CalculateTimeComplete() {
             <Select
               name="hoursRemain"
               className="w-full"
-              styles={dropdownStyles}
+              classNames={selectClassNames}
               isClearable
               isSearchable={false}
               isMulti={false}
@@ -77,7 +77,7 @@ export default function CalculateTimeComplete() {
             <Select
               name="minutesRemain"
               className="w-full"
-              styles={dropdownStyles}
+              classNames={selectClassNames}
               isClearable
               isSearchable={false}
               isMulti={false}
@@ -91,7 +91,7 @@ export default function CalculateTimeComplete() {
             <Select
               name="secondsRemain"
               className="w-full"
-              styles={dropdownStyles}
+              classNames={selectClassNames}
               isClearable
               isSearchable={false}
               isMulti={false}
@@ -110,7 +110,7 @@ export default function CalculateTimeComplete() {
             <Select
               name="hoursTotal"
               className="w-full"
-              styles={dropdownStyles}
+              classNames={selectClassNames}
               isClearable
               isSearchable={false}
               isMulti={false}
@@ -124,7 +124,7 @@ export default function CalculateTimeComplete() {
             <Select
               name="minutesTotal"
               className="w-full"
-              styles={dropdownStyles}
+              classNames={selectClassNames}
               isClearable
               isSearchable={false}
               isMulti={false}
@@ -138,7 +138,7 @@ export default function CalculateTimeComplete() {
             <Select
               name="secondsTotal"
               className="w-full"
-              styles={dropdownStyles}
+              classNames={selectClassNames}
               isClearable
               isSearchable={false}
               isMulti={false}

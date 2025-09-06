@@ -20,9 +20,9 @@ type FormInputs = {
 
 export default function FormContact() {
 
-    const inputStyles = "block pt-2 pb-1.5 px-0 w-full text-white bg-transparent border-0 border-b border-gray-600 appearance-none focus:outline-none focus:ring-0 peer";
-    const inputLabelStyles = "text-gray-400 group-focus-within:text-green-500";
-    const spanStyles = "font-semibold text-green-600 pointer-events-none select-none absolute left-0 -top-2.5 flex h-full w-full transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-green-500 after:duration-300 peer-focus:after:scale-x-100";
+    const inputStyles = "block pt-2 pb-1.5 px-0 w-full text-black dark:text-white bg-transparent border-0 border-b border-gray-600 appearance-none focus:outline-none focus:ring-0 peer";
+    const inputLabelStyles = "text-gray-600 dark:text-gray-400 group-focus-within:text-green-500 dark:group-focus-within:text-green-700";
+    const spanStyles = "font-semibold text-green-800 dark:text-green-600 pointer-events-none select-none absolute left-0 -top-2.5 flex h-full w-full transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-green-700 dark:after:border-green-500 after:duration-300 peer-focus:after:scale-x-100";
 
     const {
         register,

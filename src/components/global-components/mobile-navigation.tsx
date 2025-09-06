@@ -7,6 +7,7 @@ import router from "next/router";
 import HomeIcon from "@mui/icons-material/Home";
 import SvgIcon from "@mui/icons-material/Home";
 import { Twirl as Hamburger } from "hamburger-react";
+import { useTheme } from "next-themes";
 
 import {
     mobileLinkIcons,
@@ -19,10 +20,11 @@ function lookupMobileIcon(pageName: string) {
 
 export default function MobileNavigation() {
 
+    const { theme } = useTheme();
+
     const [isOpen, setIsOpen] = useState(false);
 
-    let mobileMenuButtonColor = "#FFFFFF";
-    isOpen ? mobileMenuButtonColor = "#22c55e" : mobileMenuButtonColor = "#FFFFFF";
+    let mobileMenuButtonColor = isOpen ? "#16a34a" : theme === "dark" ? "#FFFFFF" : "#000000";
 
     if (typeof document !== "undefined") {
         isOpen ? document.documentElement.style.overflow = "hidden" : document.documentElement.style.overflow = "scroll";
@@ -50,7 +52,7 @@ export default function MobileNavigation() {
 
             {/* Mobile menu */}
             {isOpen ? <>
-                <div className="w-full h-full fixed flex items-center top-0 left-0 bg-gray-900 md:hidden shadow p-3 z-40">
+                <div className="w-full h-full fixed flex items-center top-0 left-0 bg-gray-200 dark:bg-gray-900 md:hidden shadow p-3 z-40">
                     <div className="mobile-menu fixed block w-full p-8 text-2xl leading-none">
                         <ul className="space-y-10 w-full">
                             {mobileMenuList}
