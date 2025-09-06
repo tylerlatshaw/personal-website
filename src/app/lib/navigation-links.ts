@@ -16,8 +16,8 @@ import type {
 export const navigationLinks: NavigationLinkType[] = [
     {
         display: "Home",
-        link: "/homepage",
-        filepath: "src/app/(main-site)/homepage/page.tsx",
+        link: "/",
+        filepath: "src/app/(main-site)/page.tsx",
         changeFrequency: "monthly",
         priority: 1.0
     },
