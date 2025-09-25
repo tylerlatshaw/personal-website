@@ -84,7 +84,7 @@ export default function CurrentlyReadingContainer() {
         });
 
         const recentSortedData = recentData.sort((a, b) => {
-            if (a.createdAt < b.createdAt)
+            if (a.dateCompleted! < b.dateCompleted!)
                 return 1;
             else
                 return -1;
