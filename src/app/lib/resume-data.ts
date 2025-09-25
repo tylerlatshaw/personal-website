@@ -200,6 +200,13 @@ export const volunteerData: jobDataType[] = [
     {
         company: "Elizabethtown College",
         jobData: [{
+            jobTitle: "School of Engineering and Computer Science Partnership Board Member",
+            startDate: new Date("2025-08-18T00:00:00"),
+            endDate: null,
+            jobDetails: [],
+            previousTitle: null
+        },
+        {
             jobTitle: "Alumni Council Vice-President",
             startDate: new Date("2025-07-01T00:00:00"),
             endDate: null,
