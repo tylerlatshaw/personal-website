@@ -125,7 +125,7 @@ export default function FormContact() {
                     onSuccess={(e) => setTurnstileToken(e)}
                     options={{
                         theme: "dark",
-                        appearance: "interaction-only",
+                        appearance: "always",
                         size: "normal"
                     }}
                 />
