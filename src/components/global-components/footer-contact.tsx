@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 
+import { Turnstile } from "@marsidev/react-turnstile";
 import axios from "axios";
 import { CircularProgress } from "@mui/material/";
 import SendIcon from "@mui/icons-material/Send";
@@ -34,30 +35,53 @@ export default function FormFooterContact() {
     const [submitState, setSubmitState] = useState<SubmitState>("Idle");
     const [responseMessage, setResponseMessage] = useState<string>("");
     const [loadingState, setLoadingState] = useState<boolean>(false);
+    const [turnstileToken, setTurnstileToken] = useState<string>("");
 
     const onSubmit: SubmitHandler<FormInputs> = async (formData) => {
         setSubmitState("Idle");
         setResponseMessage("");
         setLoadingState(true);
 
-        try {
-            const { data } = await axios.post("/api/add-contact-message", {
-                name: formData.name,
-                email: formData.email,
-                message: formData.message,
-                source: "Footer",
-                referringPage: window.location.href,
-            } as ContactDataType);
+        if (turnstileToken === "") {
+            setResponseMessage("Please prove you are a human.");
+            setSubmitState("Error");
+            setLoadingState(false);
+            return;
+        }
 
-            setResponseMessage(data);
-            setSubmitState("Success");
-            reset({
-                name: "",
-                email: "",
-                message: "",
-            });
-        } catch (e) {
-            setResponseMessage("Something went wrong. Please try again.");
+        const turnstileRes = await fetch("/api/verify-turnstile", {
+            method: "POST",
+            body: JSON.stringify({ turnstileToken }),
+            headers: {
+                "content-type": "application/json"
+            }
+        });
+
+        const turnstileData = await turnstileRes.json();
+
+        if (turnstileData.success) {
+            try {
+                const { data } = await axios.post("/api/add-contact-message", {
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    source: "Footer",
+                    referringPage: window.location.href,
+                } as ContactDataType);
+
+                setResponseMessage(data);
+                setSubmitState("Success");
+                reset({
+                    name: "",
+                    email: "",
+                    message: "",
+                });
+            } catch (e) {
+                setResponseMessage("Something went wrong. Please try again.");
+                setSubmitState("Error");
+            }
+        } else {
+            setResponseMessage("Unable to validate CAPTCHA. Please try again.");
             setSubmitState("Error");
         }
 
@@ -88,26 +112,39 @@ export default function FormFooterContact() {
                 <label htmlFor="email" className={inputLabelStyles}>Email</label>
                 <span className={spanStyles}></span>
             </div>
-            <div className="relative z-0 w-full mb-3 group">
+            <div className="relative z-0 w-full group">
                 <TextareaAutosize {...register("message")} id="message" className={inputStyles} minRows={1} maxRows={4} required disabled={loadingState} />
                 <label htmlFor="message" className={inputLabelStyles}>Message</label>
                 <span className={spanStyles}></span>
             </div>
-            <div className="flex flex-col sm:flex-row items-center">
-                <Button type="submit" disabled={loadingState}>
-                    <span className="flex items-center">
-                        {loadingState ? (
-                            <>
-                                Submit&nbsp;<CircularProgress size={14} sx={{ color: "white" }} />
-                            </>
-                        ) : (
-                            <>
-                                Submit&nbsp;<SendIcon className="text-lg flex items-center" />
-                            </>
-                        )}
-                    </span>
-                </Button>
-                <span className={`pl-3 text-md  ${GetResponseCssClass()}`}>{responseMessage}</span>
+            <div className="flex flex-col items-center">
+                <Turnstile id="global-contact-form"
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    onError={(e) => setTurnstileToken(e)}
+                    onExpire={() => setTurnstileToken("")}
+                    onSuccess={(e) => setTurnstileToken(e)}
+                    options={{
+                        theme: "dark",
+                        appearance: "interaction-only",
+                        size: "normal"
+                    }}
+                />
+                <div className="flex flex-col sm:flex-row items-center">
+                    <Button type="submit" disabled={loadingState}>
+                        <span className="flex items-center">
+                            {loadingState ? (
+                                <>
+                                    Submit&nbsp;<CircularProgress size={14} sx={{ color: "white" }} />
+                                </>
+                            ) : (
+                                <>
+                                    Submit&nbsp;<SendIcon className="text-lg flex items-center" />
+                                </>
+                            )}
+                        </span>
+                    </Button>
+                    <span className={`pl-3 text-md  ${GetResponseCssClass()}`}>{responseMessage}</span>
+                </div>
             </div>
         </form>
     );
