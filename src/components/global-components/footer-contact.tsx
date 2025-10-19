@@ -18,6 +18,7 @@ type FormInputs = {
     name: string
     email: string
     message: string
+    turnstileToken: string
 };
 
 export default function FormFooterContact() {
@@ -30,34 +31,30 @@ export default function FormFooterContact() {
         register,
         handleSubmit,
         reset,
+        setValue
     } = useForm<FormInputs>();
 
     const [submitState, setSubmitState] = useState<SubmitState>("Idle");
     const [responseMessage, setResponseMessage] = useState<string>("");
     const [loadingState, setLoadingState] = useState<boolean>(false);
-    const [turnstileToken, setTurnstileToken] = useState<string>("");
 
     const onSubmit: SubmitHandler<FormInputs> = async (formData) => {
         setSubmitState("Idle");
         setResponseMessage("");
         setLoadingState(true);
 
-        if (turnstileToken === "") {
+        const token = formData.turnstileToken;
+
+        if (token === "") {
             setResponseMessage("Please prove you are a human.");
             setSubmitState("Error");
             setLoadingState(false);
             return;
         }
 
-        const turnstileRes = await fetch("/api/verify-turnstile", {
-            method: "POST",
-            body: JSON.stringify({ turnstileToken }),
-            headers: {
-                "content-type": "application/json"
-            }
+        const { data: turnstileData } = await axios.post("/api/verify-turnstile", {
+            token: token
         });
-
-        const turnstileData = await turnstileRes.json();
 
         if (turnstileData.success) {
             try {
@@ -120,13 +117,14 @@ export default function FormFooterContact() {
             <div className="flex flex-col items-center">
                 <Turnstile id="global-contact-form"
                     siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                    onError={(e) => setTurnstileToken(e)}
-                    onExpire={() => setTurnstileToken("")}
-                    onSuccess={(e) => setTurnstileToken(e)}
+                    onSuccess={(token) => setValue("turnstileToken", token)}
+                    onError={() => setValue("turnstileToken", "")}
+                    onExpire={() => setValue("turnstileToken", "")}
                     options={{
                         theme: "dark",
-                        appearance: "interaction-only",
-                        size: "normal"
+                        appearance: "always",
+                        size: "flexible",
+                        retry: "never"
                     }}
                 />
                 <div className="flex flex-col sm:flex-row items-center">

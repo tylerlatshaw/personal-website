@@ -4,7 +4,7 @@ const verifyEndpoint = "https://challenges.cloudflare.com/turnstile/v0/siteverif
 const secret = process.env.TURNSTILE_SECRET_KEY!;
 
 export async function POST(request: Request) {
-    const { token } = (await request.json()) as { token: string };
+    const { token } = await request.json();
 
     const res = await fetch(verifyEndpoint, {
         method: "POST",

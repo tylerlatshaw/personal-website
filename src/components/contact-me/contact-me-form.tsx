@@ -14,10 +14,10 @@ import type { ContactDataType } from "../../app/lib/type-library";
 
 type SubmitState = "Idle" | "Success" | "Error";
 type FormInputs = {
-    "cf-turnstile-response": any
     name: string
     email: string
     message: string
+    turnstileToken: string
 };
 
 export default function FormContact() {
@@ -30,34 +30,30 @@ export default function FormContact() {
         register,
         handleSubmit,
         reset,
+        setValue
     } = useForm<FormInputs>();
 
     const [submitState, setSubmitState] = useState<SubmitState>("Idle");
     const [responseMessage, setResponseMessage] = useState<string>("");
     const [loadingState, setLoadingState] = useState<boolean>(false);
-    const [turnstileToken, setTurnstileToken] = useState<string>("");
 
     const onSubmit: SubmitHandler<FormInputs> = async (formData) => {
         setSubmitState("Idle");
         setResponseMessage("");
         setLoadingState(true);
 
-        if (turnstileToken === "") {
+        const token = formData.turnstileToken;
+
+        if (token === "") {
             setResponseMessage("Please prove you are a human.");
             setSubmitState("Error");
             setLoadingState(false);
             return;
         }
 
-        const turnstileRes = await fetch("/api/verify-turnstile", {
-            method: "POST",
-            body: JSON.stringify({ turnstileToken }),
-            headers: {
-                "content-type": "application/json"
-            }
+        const { data: turnstileData } = await axios.post("/api/verify-turnstile", {
+            token: token
         });
-
-        const turnstileData = await turnstileRes.json();
 
         if (turnstileData.success) {
             try {
@@ -117,18 +113,7 @@ export default function FormContact() {
                 <textarea {...register("message")} id="message" rows={3} className={inputStyles} placeholder=" " required disabled={loadingState} />
                 <span className={spanStyles}></span>
             </div>
-            <div className="flex flex-col lg:flex-row items-center">
-                <Turnstile id="contact-me-form"
-                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                    onError={(e) => setTurnstileToken(e)}
-                    onExpire={() => setTurnstileToken("")}
-                    onSuccess={(e) => setTurnstileToken(e)}
-                    options={{
-                        theme: "dark",
-                        appearance: "interaction-only",
-                        size: "normal"
-                    }}
-                />
+            <div className="w-full flex flex-col lg:flex-row items-center gap-3">
                 <Button type="submit" disabled={loadingState}>
                     <span className="flex items-center">
                         {loadingState ? (
@@ -142,7 +127,19 @@ export default function FormContact() {
                         )}
                     </span>
                 </Button>
-                <span className={`pl-3 text-md  ${GetResponseCssClass()}`}>{responseMessage}</span>
+                <span className={`text-md  ${GetResponseCssClass()}`}>{responseMessage}</span>
+                <Turnstile id="contact-me-form"
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    onSuccess={(token) => setValue("turnstileToken", token)}
+                    onError={() => setValue("turnstileToken", "")}
+                    onExpire={() => setValue("turnstileToken", "")}
+                    options={{
+                        theme: "dark",
+                        appearance: "always",
+                        size: "normal",
+                        retry: "never"
+                    }}
+                />
             </div>
         </form>
     );
