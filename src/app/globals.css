@@ -449,6 +449,20 @@ h2 {
   touch-action: manipulation;
 }
 
+.turnstile-wrapper-contact-me {
+  padding-left: var(--value-3);
+}
+
+.turnstile-wrapper-footer {
+  padding-top: var(--value-3);
+  padding-bottom: var(--value-3);
+}
+
+#global-contact-form div:has(input[type="hidden"]) {
+  padding: 0 !important;
+  height: 0 !important;
+}
+
 
 /*******************************/
 /*****
