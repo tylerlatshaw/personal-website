@@ -113,7 +113,7 @@ export default function FormContact() {
                 <textarea {...register("message")} id="message" rows={3} className={inputStyles} placeholder=" " required disabled={loadingState} />
                 <span className={spanStyles}></span>
             </div>
-            <div className="w-full flex flex-col lg:flex-row items-center gap-3">
+            <div className="w-full flex flex-col lg:flex-row items-center">
                 <Button type="submit" disabled={loadingState}>
                     <span className="flex items-center">
                         {loadingState ? (
@@ -127,19 +127,22 @@ export default function FormContact() {
                         )}
                     </span>
                 </Button>
-                <span className={`text-md  ${GetResponseCssClass()}`}>{responseMessage}</span>
-                <Turnstile id="contact-me-form"
-                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                    onSuccess={(token) => setValue("turnstileToken", token)}
-                    onError={() => setValue("turnstileToken", "")}
-                    onExpire={() => setValue("turnstileToken", "")}
-                    options={{
-                        theme: "dark",
-                        appearance: "always",
-                        size: "normal",
-                        retry: "never"
-                    }}
-                />
+                <span className={`pl-3 text-md  ${GetResponseCssClass()}`}>{responseMessage}</span>
+                                <div className="flex turnstile-wrapper-contact-me">
+                    <Turnstile id="contact-me-form"
+                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                        onSuccess={(token) => setValue("turnstileToken", token)}
+                        onError={() => setValue("turnstileToken", "")}
+                        onExpire={() => setValue("turnstileToken", "")}
+                        options={{
+                            theme: "dark",
+                            appearance: "interaction-only",
+                            size: "normal",
+                            retry: "never"
+                        }}
+                    />
+                </div>
+
             </div>
         </form>
     );

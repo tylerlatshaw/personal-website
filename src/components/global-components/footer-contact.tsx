@@ -114,19 +114,21 @@ export default function FormFooterContact() {
                 <label htmlFor="message" className={inputLabelStyles}>Message</label>
                 <span className={spanStyles}></span>
             </div>
-            <div className="flex flex-col items-center">
-                <Turnstile id="global-contact-form"
-                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                    onSuccess={(token) => setValue("turnstileToken", token)}
-                    onError={() => setValue("turnstileToken", "")}
-                    onExpire={() => setValue("turnstileToken", "")}
-                    options={{
-                        theme: "dark",
-                        appearance: "always",
-                        size: "flexible",
-                        retry: "never"
-                    }}
-                />
+            <div className="flex flex-col items-center w-full">
+                <div className="flex w-full turnstile-wrapper-footer">
+                    <Turnstile id="global-contact-form"
+                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                        onSuccess={(token) => setValue("turnstileToken", token)}
+                        onError={() => setValue("turnstileToken", "")}
+                        onExpire={() => setValue("turnstileToken", "")}
+                        options={{
+                            theme: "dark",
+                            appearance: "interaction-only",
+                            size: "flexible",
+                            retry: "never"
+                        }}
+                    />
+                </div>
                 <div className="flex flex-col sm:flex-row items-center">
                     <Button type="submit" disabled={loadingState}>
                         <span className="flex items-center">
