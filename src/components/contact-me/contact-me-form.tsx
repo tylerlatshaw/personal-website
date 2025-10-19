@@ -135,7 +135,7 @@ export default function FormContact() {
                     onExpire={() => setValue("turnstileToken", "")}
                     options={{
                         theme: "dark",
-                        appearance: "interaction-only",
+                        appearance: "always",
                         size: "normal",
                         retry: "never"
                     }}

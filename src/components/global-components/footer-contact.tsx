@@ -62,7 +62,7 @@ export default function FormFooterContact() {
                     name: formData.name,
                     email: formData.email,
                     message: formData.message,
-                    source: "Contact Me",
+                    source: "Footer",
                     referringPage: window.location.href,
                 } as ContactDataType);
 
@@ -122,7 +122,7 @@ export default function FormFooterContact() {
                     onExpire={() => setValue("turnstileToken", "")}
                     options={{
                         theme: "dark",
-                        appearance: "interaction-only",
+                        appearance: "always",
                         size: "flexible",
                         retry: "never"
                     }}
