@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import supabase from "../../../utilities/supabase";
@@ -5,6 +6,12 @@ import supabase from "../../../utilities/supabase";
 import type { VinylFormType } from "@/app/lib/type-library";
 
 export async function POST(request: Request) {
+    const session = cookies().get("session_key")?.value;
+
+    if (!session) {
+        return new Response("Error: session key missing. Access denied.", { status: 403 });
+    }
+
     try {
         const formData: VinylFormType = await request.json();
 

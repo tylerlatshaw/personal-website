@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import supabase from "../../../utilities/supabase";
@@ -8,6 +9,12 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function GET() {
+    const session = cookies().get("session_key")?.value;
+
+    if (!session) {
+        return new Response("Error: session key missing. Access denied.", { status: 403 });
+    }
+
     try {
         const results: CurrentlyReadingResultType[] = [];
         const { data } = await supabase.from("currently_reading").select();

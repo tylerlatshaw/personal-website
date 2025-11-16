@@ -8,6 +8,7 @@ import {
 
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
 import { LinearProgress } from "@mui/material";
+import axios from "axios";
 import dayjs from "dayjs";
 
 import CurrentlyReadingLoading from "./currently-reading-loading";
@@ -22,6 +23,8 @@ export default function CurrentlyReadingContainer() {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
+        axios.get("/api/get-session-key");
+
         const getData = async () => {
             try {
                 const res = await fetch("/api/get-currently-reading", { cache: "no-store" });

@@ -4,12 +4,18 @@ import supabase from "../../../utilities/supabase";
 
 type Data = {
     totalBooks: number,
-    bookList: string
+    bookList: string,
+    apiKey: string
 };
 
 export async function POST(request: Request) {
+
     try {
         const logEntry: Data = await request.json();
+
+        if (logEntry.apiKey != process.env.API_KEY) {
+            return new Response("Error: session key missing. Access denied.", { status: 403 });
+        }
 
         const entryText = "Current Number of Books Stored: " + logEntry.totalBooks + " Book List: " + logEntry.bookList;
 

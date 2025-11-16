@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
@@ -19,6 +20,11 @@ const fromAddress = process.env.RESEND_FROM;
 const myEmailAddress = process.env.RESEND_MY_EMAIL;
 
 export async function POST(request: Request) {
+    const session = cookies().get("session_key")?.value;
+
+    if (!session) {
+        return new Response("Error: session key missing. Access denied.", { status: 403 });
+    }
 
     const {
         name,

@@ -73,7 +73,7 @@ export default function ManageEmails() {
       let enteredKey;
 
       if (environment === "development") {
-        enteredKey = `${process.env.NEXT_PUBLIC_API_KEY}`;
+        enteredKey = "DEV_API_KEY";
       } else {
         enteredKey = formData.apiKey;
       }

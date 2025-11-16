@@ -1,15 +1,16 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 
 import ComingSoonOnList from "../../../components/emails/coming-soon-on-the-list";
 import ComingSoonSiteLive from "../../../components/emails/coming-soon-site-is-live";
 import MessageReceived from "../../../components/emails/new-message-received";
 import ThankYouEmail from "../../../components/emails/thank-you-email";
-
 import {
     getCurrentDate,
     getCurrentDateTime
 } from "../../../utilities/date-utilities";
+
+import { Resend } from "resend";
 
 import type { EmailFormType } from "../../lib/type-library";
 
@@ -19,6 +20,11 @@ const myEmailAddress = process.env.RESEND_MY_EMAIL;
 const devPrefix = "[Dev] ";
 
 export async function POST(request: Request) {
+    const session = cookies().get("session_key")?.value;
+
+    if (!session) {
+        return new Response("Error: session key missing. Access denied.", { status: 403 });
+    }
 
     const {
         selection,
@@ -49,7 +55,7 @@ export async function POST(request: Request) {
         referringPage
     };
 
-    if (apiKey === process.env.NEXT_PUBLIC_API_KEY) {
+    if (apiKey === process.env.API_KEY) {
         if (selection === "AutoReply") {
             const data = {
                 name: messageData.name,
