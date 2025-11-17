@@ -2,20 +2,52 @@ import { NextResponse } from "next/server";
 
 import supabase from "../../../utilities/supabase";
 
+import { CurrentlyReadingResultType } from "@/app/lib/type-library";
+
 type Data = {
     totalBooks: number,
-    bookList: string,
-    apiKey: string
+    bookList: string
 };
 
 export async function POST(request: Request) {
 
-    try {
-        const logEntry: Data = await request.json();
+    const key = request.headers.get("x-api-key");
 
-        if (logEntry.apiKey != process.env.API_KEY) {
-            return new Response("Error: session key missing. Access denied.", { status: 403 });
+    if (key != process.env.API_KEY) {
+        return new Response("Error: invalid API key. Access denied.", { status: 403 });
+    }
+
+    try {
+        const currentlyReadingData: CurrentlyReadingResultType[] = [];
+        const { data: currentlyReadingRes } = await supabase.from("currently_reading").select();
+
+        currentlyReadingRes?.forEach((item) => {
+            currentlyReadingData.push({
+                id: item.id,
+                createdAt: new Date(item.created_at),
+                modifiedAt: new Date(item.modified_at),
+                name: item.name,
+                author: item.author,
+                percentComplete: item.percent_complete,
+                dateCompleted: item.date_completed ? new Date(item.date_completed!) : null,
+                imageUrl: item.image_url
+            });
+        });
+
+        currentlyReadingData?.sort((a, b) =>
+            (a.createdAt < b.createdAt) ? 1 : -1
+        );
+
+        var bookTitles = "";
+
+        for (const book of currentlyReadingData || []) {
+            bookTitles += book.name + "; ";
         }
+
+        const logEntry: Data = {
+            totalBooks: currentlyReadingData?.length || 0,
+            bookList: bookTitles
+        };
 
         const entryText = "Current Number of Books Stored: " + logEntry.totalBooks + " Book List: " + logEntry.bookList;
 
