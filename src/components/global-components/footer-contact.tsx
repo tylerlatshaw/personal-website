@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {
+    useEffect,
+    useState
+} from "react";
 
 import { Turnstile } from "@marsidev/react-turnstile";
 import axios from "axios";
@@ -22,6 +25,10 @@ type FormInputs = {
 };
 
 export default function FormFooterContact() {
+
+    useEffect(() => {
+        axios.get("/api/get-session-key");
+    }, []);
 
     const inputStyles = "block pt-3 pb-1.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b border-gray-600 appearance-none focus:outline-none focus:ring-0 peer";
     const inputLabelStyles = "peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6";

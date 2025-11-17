@@ -1,8 +1,15 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import supabase from "../../../utilities/supabase";
 
 export async function POST(request: Request) {
+    const session = cookies().get("session_key")?.value;
+
+    if (!session) {
+        return new Response("Error: session key missing. Access denied.", { status: 403 });
+    }
+
     try {
         const formdata = await request.formData();
         const body = Object.fromEntries(formdata);

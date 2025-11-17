@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import axios from "axios";
 import Hamburger from "hamburger-react";
 
 import CalculateTimeComplete from "./developer-calculate-time";
@@ -16,6 +17,10 @@ import SupabaseCommands from "./developer-supabase-commands";
 import type { DeveloperItemType } from "../../app/lib/type-library";
 
 export default function DeveloperContainer() {
+
+  useEffect(() => {
+    axios.get("/api/get-session-key");
+  }, []);
 
   const modules: DeveloperItemType[] = [
     {
