@@ -45,7 +45,7 @@ export default function CurrentlyReadingContainer() {
         return a.percentComplete > 0 && a.percentComplete < 100;
     });
     const recentData = currentlyReading.filter((a) => {
-        return a.percentComplete === 100 && dayjs(a.dateCompleted!) >= dayjs().subtract(60, "days");
+        return a.percentComplete === 100 && dayjs(a.dateCompleted!) >= dayjs().subtract(6, "months");
     });
 
     const BookCard = (record: CurrentlyReadingResultType) => <>

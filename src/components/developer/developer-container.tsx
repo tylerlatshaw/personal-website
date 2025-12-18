@@ -65,7 +65,7 @@ export default function DeveloperContainer() {
     },
   ];
 
-  const [activeIndex, setActiveIndex] = useState<number>(1);
+  const [activeIndex, setActiveIndex] = useState<number>(2);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activePageName, setActivePageName] = useState<string>(modules[1].title);
 

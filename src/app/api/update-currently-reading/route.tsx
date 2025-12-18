@@ -23,7 +23,9 @@ export async function POST(request: Request) {
         }
 
         const id = formData.id && formData.id > 0 ? formData.id : undefined;
-        const date_completed = formData.dateCompleted ? new Date(formData.dateCompleted).toISOString() : undefined;
+        const dateCompleted = formData.dateCompleted ? new Date(formData.dateCompleted).toISOString() : undefined;
+        const durationHours = formData.durationHours ?? undefined;
+        const durationMinutes = formData.durationMinutes ?? undefined;
         const modifier = formData.id && formData.id > 0 ? "updated" : "added";
 
         const { data, error } = await supabase
@@ -33,7 +35,9 @@ export async function POST(request: Request) {
                 "name": formData.name,
                 "author": formData.author,
                 "percent_complete": formData.percentComplete,
-                "date_completed": date_completed,
+                "date_completed": dateCompleted,
+                "duration_hours": durationHours,
+                "duration_minutes": durationMinutes,
                 "image_url": formData.imageUrl
             })
             .select();
