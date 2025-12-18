@@ -30,7 +30,9 @@ export async function POST(request: Request) {
                 author: item.author,
                 percentComplete: item.percent_complete,
                 dateCompleted: item.date_completed ? new Date(item.date_completed!) : null,
-                imageUrl: item.image_url
+                imageUrl: item.image_url,
+                durationHours: item.duration_hours,
+                durationMinutes: item.duration_minutes
             });
         });
 
