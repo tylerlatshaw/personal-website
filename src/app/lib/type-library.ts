@@ -32,6 +32,8 @@ export type CurrentlyReadingFormType = {
     author: string,
     percentComplete: number,
     dateCompleted: Date | null,
+    durationHours: number | null,
+    durationMinutes: number | null,
     imageUrl: string
 }
 
@@ -43,6 +45,8 @@ export type CurrentlyReadingResultType = {
     author: string,
     percentComplete: number,
     dateCompleted: Date | null,
+    durationHours: number | null,
+    durationMinutes: number | null,
     imageUrl: string
 }
 

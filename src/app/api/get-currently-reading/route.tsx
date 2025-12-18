@@ -28,6 +28,8 @@ export async function GET() {
                 author: item.author,
                 percentComplete: item.percent_complete,
                 dateCompleted: item.date_completed ? new Date(item.date_completed!) : null,
+                durationHours: item.duration_hours ?? null,
+                durationMinutes: item.duration_minutes ?? null,
                 imageUrl: item.image_url
             });
         });

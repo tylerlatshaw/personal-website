@@ -2,6 +2,7 @@
 
 import {
   useEffect,
+  useMemo,
   useState
 } from "react";
 import Image from "next/image";
@@ -14,7 +15,9 @@ import {
   SubmitHandler,
   useForm
 } from "react-hook-form";
-import { components } from "react-select";
+import Select, {
+  components
+} from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { v4 as uuidv4 } from "uuid";
 
@@ -50,6 +53,8 @@ export default function ManageCurrentlyReading() {
       author: "",
       percentComplete: 0,
       dateCompleted: null,
+      durationHours: undefined,
+      durationMinutes: undefined,
       imageUrl: "",
     },
   });
@@ -66,6 +71,19 @@ export default function ManageCurrentlyReading() {
   const [filePreview, setFilePreview] = useState<string>("");
 
   const imageFilepath = process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public/personal-website-storage/";
+
+  const hoursOptions = useMemo<SelectOption[]>(
+    () => Array.from({ length: 24 }, (_, i) => ({ value: i, label: String(i) })),
+    []
+  );
+
+  const minOptions = useMemo<SelectOption[]>(
+    () => Array.from({ length: 60 }, (_, i) => ({ value: i, label: String(i) })),
+    []
+  );
+
+  const optByValue = (opts: SelectOption[], v: number | null) =>
+    v === null ? null : opts.find(o => o.value === v) ?? null;
 
   useEffect(() => {
     (async () => {
@@ -96,6 +114,17 @@ export default function ManageCurrentlyReading() {
     setResponseMessage("");
     setSubmitting(true);
 
+    // if (hoursTotal! >= 0 && minutesTotal! >= 0) {
+    //   formData.durationHours = hoursTotal;
+    //   formData.durationMinutes = minutesTotal;
+    // }
+    // else {
+    //   formData.durationHours = null;
+    //   formData.durationMinutes = null;
+    // }
+
+    console.table(formData);
+
     try {
       if (file) {
         const fileUpload = new FormData();
@@ -111,8 +140,6 @@ export default function ManageCurrentlyReading() {
         });
         const json = await response.json();
         if (!response.ok) throw new Error(json.error || "Upload failed");
-
-        console.log(json);
 
         formData.imageUrl = json.path;
       }
@@ -225,6 +252,8 @@ export default function ManageCurrentlyReading() {
                       setValue("dateCompleted", new Date(book.dateCompleted!).toISOString().substring(0, 10) as unknown as Date)
                       : setValue("dateCompleted", null);
                     setValue("imageUrl", book.imageUrl);
+                    setValue("durationHours", book.durationHours);
+                    setValue("durationMinutes", book.durationMinutes);
                     setExistingFilepath(imageFilepath + book.imageUrl);
                   }
                 });
@@ -293,6 +322,47 @@ export default function ManageCurrentlyReading() {
             <div className="relative w-full group">
               <input {...register("percentComplete", { valueAsNumber: true })} type="number" min={0} max={100} className={inputStyles} disabled={submitting || !bookOptions} required />
               <label htmlFor="percentComplete" className={inputLabelStyles}>Percent Complete</label>
+            </div>
+
+            <div className="flex flex-col w-full gap-2">
+              <span className="font-semibold text-green-600 pointer-events-none select-none h-full w-full">Duration</span>
+              <div className="flex flex-row items-center justify-center gap-2 w-full">
+                <Controller
+                  name="durationHours"
+                  control={control}
+                  render={({ field }) => (
+                    <Select<SelectOption, false>
+                      className="w-full"
+                      styles={dropdownStyles}
+                      isClearable
+                      isSearchable={false}
+                      options={hoursOptions}
+                      placeholder="Hours"
+                      value={optByValue(hoursOptions, field.value ?? null)}
+                      onChange={(opt) => field.onChange(opt?.value ?? null)}
+                      isDisabled={submitting || !bookOptions}
+                    />
+                  )}
+                />
+                <span className="text-lg font-bold">:</span>
+                <Controller
+                  name="durationMinutes"
+                  control={control}
+                  render={({ field }) => (
+                    <Select<SelectOption, false>
+                      className="w-full"
+                      styles={dropdownStyles}
+                      isClearable
+                      isSearchable={false}
+                      options={minOptions}
+                      placeholder="Minutes"
+                      value={optByValue(minOptions, field.value ?? null)}
+                      onChange={(opt) => field.onChange(opt?.value ?? null)}
+                      isDisabled={submitting || !bookOptions}
+                    />
+                  )}
+                />
+              </div>
             </div>
 
             <div className="relative w-full group">
