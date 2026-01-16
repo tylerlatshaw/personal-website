@@ -10,6 +10,41 @@ module.exports = {
         const result = [];
 
         result.push({
+            loc: "/",
+            changefreq: "monthly",
+            priority: 1,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
+            loc: "/resume",
+            changefreq: "monthly",
+            priority: 0.9,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
+            loc: "/portfolio",
+            changefreq: "yearly",
+            priority: 0.6,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
+            loc: "/interests",
+            changefreq: "weekly",
+            priority: 0.8,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
+            loc: "/contact-me",
+            changefreq: "yearly",
+            priority: 0.4,
+            lastmod: new Date().toISOString(),
+        });
+
+        result.push({
             loc: "/portfolio/project-management-system-report",
             changefreq: "yearly",
             priority: 0.6,
