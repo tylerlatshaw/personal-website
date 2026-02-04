@@ -137,7 +137,7 @@ export default function FormFooterContact() {
                     />
                 </div>
                 <div className="flex flex-col sm:flex-row items-center">
-                    <Button type="submit" disabled={loadingState}>
+                    <Button type="submit" disabled={loadingState} variant="contained">
                         <span className="flex items-center">
                             {loadingState ? (
                                 <>

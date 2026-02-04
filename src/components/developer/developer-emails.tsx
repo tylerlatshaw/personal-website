@@ -10,8 +10,8 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import Button from "../ui/button";
 import {
-    inputLabelStyles,
-    inputStyles
+  inputLabelStyles,
+  inputStyles
 } from "./dropdown-configuration";
 
 import type { EmailFormType } from "../../app/lib/type-library";
@@ -205,7 +205,7 @@ export default function ManageEmails() {
         {GetApiField()}
         {GetSelectedTemplateFields()}
         <div className="flex items-center">
-          <Button type="submit" disabled={loadingState}>
+          <Button type="submit" disabled={loadingState} variant="contained">
             <span className="flex items-center">
               <span className="flex items-center">
                 {loadingState ? (

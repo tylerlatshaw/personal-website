@@ -61,11 +61,8 @@ export default function CalculateTimeComplete() {
       } catch (err) {
         console.error(err);
       }
-    })();
-  }, []);
-
-  useEffect(() => {
-    const remainingHasAny = hasAnyValue(hoursRemain, minutesRemain, secondsRemain);
+    })().then(() => {
+          const remainingHasAny = hasAnyValue(hoursRemain, minutesRemain, secondsRemain);
     const totalHasAny = hasAnyValue(hoursTotal, minutesTotal, secondsTotal);
 
     if (!remainingHasAny || !totalHasAny) {
@@ -87,14 +84,9 @@ export default function CalculateTimeComplete() {
     );
 
     setPercentComplete((completedSec / totalSec) * 100);
-  }, [
-    hoursRemain,
-    minutesRemain,
-    secondsRemain,
-    hoursTotal,
-    minutesTotal,
-    secondsTotal,
-  ]);
+
+    });
+  }, [hoursRemain, hoursTotal, minutesRemain, minutesTotal, secondsRemain, secondsTotal]);
 
   return (
     <div className="developer-module disable-tap-zoom">

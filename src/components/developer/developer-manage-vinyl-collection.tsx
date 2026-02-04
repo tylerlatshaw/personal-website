@@ -265,7 +265,7 @@ export default function ManageVinylCollection() {
             </div>
 
             <div className="flex items-center">
-              <Button type="submit" disabled={submitting || !recordOptions}>
+              <Button type="submit" disabled={submitting || !recordOptions} variant="contained">
                 <span className="flex items-center">
                   {submitting ? (
                     <>

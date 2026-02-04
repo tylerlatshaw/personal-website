@@ -8,8 +8,10 @@ import {
 import Image from "next/image";
 
 import { CircularProgress } from "@mui/material/";
+import Done from "@mui/icons-material/Done";
 import PhotoIcon from "@mui/icons-material/Photo";
 import SendIcon from "@mui/icons-material/Send";
+import dayjs from "dayjs";
 import {
   Controller,
   SubmitHandler,
@@ -263,6 +265,13 @@ export default function ManageCurrentlyReading() {
                 setBookOptions((prev) => [newOption, ...prev]);
                 field.onChange(-1);
                 setValue("name", inputValue);
+                setValue("author", "");
+                setValue("percentComplete", 0);
+                setValue("dateCompleted", null);
+                setValue("imageUrl", "");
+                setExistingFilepath("");
+                setValue("durationHours", null);
+                setValue("durationMinutes", null);
                 setIsSelected(true);
               }}
             />
@@ -319,11 +328,6 @@ export default function ManageCurrentlyReading() {
               <label htmlFor="author" className={inputLabelStyles}>Author</label>
             </div>
 
-            <div className="relative w-full group">
-              <input {...register("percentComplete", { valueAsNumber: true })} type="number" min={0} max={100} className={inputStyles} disabled={submitting || !bookOptions} required />
-              <label htmlFor="percentComplete" className={inputLabelStyles}>Percent Complete</label>
-            </div>
-
             <div className="flex flex-col w-full gap-2">
               <span className="font-semibold text-green-600 pointer-events-none select-none h-full w-full">Duration</span>
               <div className="flex flex-row items-center justify-center gap-2 w-full">
@@ -365,6 +369,29 @@ export default function ManageCurrentlyReading() {
               </div>
             </div>
 
+            <div className="flex flex-row justify-between relative w-full group">
+              <div className="w-3/4">
+                <div className="relative w-full group">
+                  <input {...register("percentComplete", { valueAsNumber: true })} type="number" min={0} max={100} className={inputStyles} disabled={submitting || !bookOptions} required />
+                  <label htmlFor="percentComplete" className={inputLabelStyles}>Percent Complete</label>
+                </div>
+              </div>
+              <Button
+                disabled={submitting || !bookOptions}
+                onClick={() => {
+                  setValue("percentComplete", 100);
+                  setValue("dateCompleted", dayjs().format("YYYY-MM-DD") as unknown as Date);
+                }}
+                variant="outlined"
+              >
+                <span className="flex items-center">
+                  <>
+                    I&apos;m Finised&nbsp;<Done className="text-lg flex items-center" />
+                  </>
+                </span>
+              </Button>
+            </div>
+
             <div className="relative w-full group">
               <input {...register("dateCompleted")} type="date" className={inputStyles} disabled={submitting || !bookOptions} />
               <label htmlFor="dateCompleted" className={inputLabelStyles}>Date Completed</label>
@@ -373,7 +400,7 @@ export default function ManageCurrentlyReading() {
             <input {...register("imageUrl")} type="hidden" />
 
             <div className="flex items-center">
-              <Button type="submit" disabled={submitting || !bookOptions}>
+              <Button type="submit" disabled={submitting || !bookOptions} variant="contained">
                 <span className="flex items-center">
                   {submitting ? (
                     <>

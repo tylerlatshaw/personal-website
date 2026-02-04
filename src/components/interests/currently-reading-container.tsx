@@ -10,6 +10,7 @@ import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
 import { LinearProgress } from "@mui/material";
 import axios from "axios";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
 import CurrentlyReadingLoading from "./currently-reading-loading";
 
@@ -21,6 +22,8 @@ export default function CurrentlyReadingContainer() {
 
     const [currentlyReading, setCurrentlyReading] = useState<CurrentlyReadingResultType[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+
+    dayjs.extend(utc);
 
     useEffect(() => {
         axios.get("/api/get-session-key");
@@ -70,7 +73,7 @@ export default function CurrentlyReadingContainer() {
                             <div className="flex w-full justify-center">
                                 <CheckCircleTwoToneIcon className="!text-green-400 !drop-shadow-lg" sx={{ "fontSize": "3rem" }} />
                             </div>
-                            <span>Finished On: {dayjs(record.dateCompleted!).format("M/D/YYYY")}</span>
+                            <span>Finished On: {dayjs(record.dateCompleted!).utc().format("M/D/YYYY")}</span>
                         </div>
                     </>
                 }

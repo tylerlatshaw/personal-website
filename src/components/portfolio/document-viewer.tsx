@@ -26,7 +26,7 @@ export default function DocumentViewer(portfolio: portfolioOptionType) {
 
                     <div className="lg:absolute lg:top-0 lg:right-0 w-full lg:w-fit">
                         <Link href="/portfolio">
-                            <Button type="button" className="!bg-blue-800 hover:!bg-blue-900 focus:ring-2 focus:outline-none focus:!ring-blue-700 !shadow-lg !shadow-black/40 !mb-6 lg:!mb-0">
+                            <Button type="button" className="!bg-blue-800 hover:!bg-blue-900 focus:ring-2 focus:outline-none focus:!ring-blue-700 !shadow-lg !shadow-black/40 !mb-6 lg:!mb-0" variant="contained">
                                 <ArrowBackIcon />&nbsp;Back
                             </Button>
                         </Link>
@@ -72,7 +72,7 @@ export default function DocumentViewer(portfolio: portfolioOptionType) {
                                 {
                                     webLink !== null ? <div className="text-center md:text-left w-full md:w-fit mr-3 mb-2 md:mb-0">
                                         <Link href={webLink} target="_blank">
-                                            <Button type="button">
+                                            <Button type="button" variant="contained">
                                                 View {name}
                                             </Button>
                                         </Link>
