@@ -114,7 +114,7 @@ export default function FormContact() {
                 <span className={spanStyles}></span>
             </div>
             <div className="w-full flex flex-col lg:flex-row items-center">
-                <Button type="submit" disabled={loadingState}>
+                <Button type="submit" disabled={loadingState} variant="contained">
                     <span className="flex items-center">
                         {loadingState ? (
                             <>

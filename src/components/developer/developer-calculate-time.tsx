@@ -40,9 +40,14 @@ export default function CalculateTimeComplete() {
     v === null ? null : opts.find((o) => o.value === v) ?? null;
 
   useEffect(() => {
+    const controller = new AbortController();
+
     (async () => {
       try {
-        const res = await fetch("/api/get-currently-reading", { cache: "no-store" });
+        const res = await fetch("/api/get-currently-reading", {
+          cache: "no-store",
+          signal: controller.signal,
+        });
         if (!res.ok) throw new Error("Failed to fetch books");
 
         const books: CurrentlyReadingResultType[] = await res.json();
@@ -59,9 +64,11 @@ export default function CalculateTimeComplete() {
         setMinutesTotal(book.durationMinutes ?? null);
         setSecondsTotal(null);
       } catch (err) {
-        console.error(err);
+        if ((err as any)?.name !== "AbortError") console.error(err);
       }
     })();
+
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
@@ -81,20 +88,9 @@ export default function CalculateTimeComplete() {
       return;
     }
 
-    const completedSec = Math.max(
-      0,
-      Math.min(totalSec, totalSec - remainingSec)
-    );
-
+    const completedSec = Math.max(0, Math.min(totalSec, totalSec - remainingSec));
     setPercentComplete((completedSec / totalSec) * 100);
-  }, [
-    hoursRemain,
-    minutesRemain,
-    secondsRemain,
-    hoursTotal,
-    minutesTotal,
-    secondsTotal,
-  ]);
+  }, [hoursRemain, minutesRemain, secondsRemain, hoursTotal, minutesTotal, secondsTotal]);
 
   return (
     <div className="developer-module disable-tap-zoom">

@@ -85,7 +85,7 @@ export default function PortfolioGallery() {
                             categories.map((category) => {
                                 return (<div key={category}>
                                     <Link href={"#" + category}>
-                                        <Button type="button" className="!bg-blue-800 hover:!bg-blue-900 focus:ring-2 focus:outline-none focus:!ring-blue-700 !shadow-lg !shadow-black/40">
+                                        <Button type="button" className="!bg-blue-800 hover:!bg-blue-900 focus:ring-2 focus:outline-none focus:!ring-blue-700 !shadow-lg !shadow-black/40" variant="contained">
                                             {category}
                                         </Button>
                                     </Link>
