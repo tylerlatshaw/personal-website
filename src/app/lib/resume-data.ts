@@ -1,4 +1,4 @@
-export const professionalProfile: string = "I am an Advanced Certified ScrumMaster and Senior Technical Business Analyst with more than 8 years of industry experience leading projects, managing development teams, and mentoring others at a multi-billion-dollar company looking to further my career into academic instruction as an adjunct faculty member while maintaining my current position.";
+export const professionalProfile: string = "I am an Advanced Certified ScrumMaster and Senior Technical Business Analyst with more than 8 years of hands-on industry experience leading software engineering initiatives, managing cross-functional development teams, and mentoring team members. Seeking to bring current industry perspective and applied technical knowledge into the classroom as an adjunct faculty member.";
 
 export type companyName = "Best Buy" | "Elizabethtown College" | "Southern New Hampshire University" | "The Home Depot" | "WebstaurantStore"
 
@@ -64,12 +64,13 @@ export const jobData: jobDataType[] = [
             jobTitle: "Senior Technical Business Analyst",
             startDate: new Date("2024-01-01T00:00:00"),
             endDate: null,
-            jobDetails: ["Led over a dozen development teams with up to 25 individuals to build C# applications and systems",
-                "Analyzed complex business workflows and crafted user stories to aid developers while coding",
-                "Facilitated multiple trainings on process automation to teach division of more than 500 employees",
+            jobDetails: ["Led over a dozen development teams (up to 35 members) delivering C# applications and systems",
+                "Analyzed complex business workflows and developed user stories to aid developers while coding",
+                "Designed and wrote automation workflows that are now adopted and used by over 50 separate teams",
+                "Facilitated multiple process automation trainings for a department of more than 500 employees ",
                 "Performed advanced SQL reporting for company executives for data-driven business decisions",
                 "Engaged teams in a collaborative manner to maintain positive workplace culture while working remote",
-                "Miro Hall of Fame Nominee - 2023, Top 10 Most Copied Users Worldwide, Most Copied Creator - June 2023"],
+                "Miro Hall of Fame Nominee – 2023; Miro Most Copied Creator Worldwide - June 2023"],
             previousTitle: [{
                 jobTitle: "Technical Business Analyst",
                 startDate: new Date("2022-01-01T00:00:00"),
@@ -88,9 +89,9 @@ export const jobData: jobDataType[] = [
             endDate: new Date("2020-07-20T00:00:00"),
             jobDetails: ["Led multiple development projects as product owner and managed projects for 30+ person team",
                 "Updated internal search index for SEO keyword volume, increasing revenue by over $500,000",
-                "Instructed employees and management on newly built systems and proper use of Microsoft Excel",
+                "Trained employees and management on proper use of newly built internal systems",
                 "Analyzed monthly cost-savings reports to deliver performance data to company executives",
-                "Conducted 200+ interviews; Hand-picked for projects for the CEO and CIO on industry compliance"],
+                "Interviewed 200+ candidates; Hand-picked for projects for the CEO and CIO on industry compliance"],
             previousTitle: [{
                 jobTitle: "Website Maintenance Specialist",
                 startDate: new Date("2017-05-22T00:00:00"),
@@ -166,9 +167,9 @@ export const internData: jobDataType[] = [
             jobTitle: "Website Maintenance Intern",
             startDate: new Date("2017-01-17T00:00:00"),
             endDate: new Date("2017-05-22T00:00:00"),
-            jobDetails: ["Updated content, site structure, and user experience for muti-billion-dollar website to ensure accuracy",
+            jobDetails: ["Updated content, site structure, and user experience for multi-billion-dollar website to ensure accuracy",
                 "Categorized products and parsed technical data while maintaining SEO value to drive revenue",
-                "Responded to thousands of email requests to triage updates from business stakeholders"],
+                "Triaged thousands of stakeholder email requests related to website content and structural updates"],
             previousTitle: null
         }]
     },
@@ -297,17 +298,17 @@ export const educationData: educationDataType[] = [
 
 export const skills = [
     "Written & Verbal Communication",
-    "Training & Mentoring",
-    "Meeting Facilitation",
-    "Interpersonal Ability",
-    "Servant Leadership",
+    "Training",
+    "Mentoring",
+    "Facilitation",
+    "Agile",
     "Scrum",
     "Kanban",
     "User Testing",
+    "React",
+    "Next.js",
     "SQL",
     "Java",
-    "Tailwind",
-    "User Testing",
-    "UI & UX Design",
-    "Microsoft Office"
+    "Microsoft Office",
+    "Miro"
 ];
