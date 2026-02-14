@@ -1,4 +1,4 @@
-export const professionalProfile: string = "I am an Advanced Certified ScrumMaster and Senior Technical Business Analyst with more than 8 years of hands-on industry experience leading software engineering initiatives, managing cross-functional development teams, and mentoring team members. Seeking to bring current industry perspective and applied technical knowledge into the classroom as an adjunct faculty member.";
+export const professionalProfile: string = "I am an Advanced Certified ScrumMaster and Senior Technical Business Analyst with more than 8 years of hands-on industry experience leading software engineering initiatives, managing cross-functional development teams, and mentoring team members. Seeking to bring current industry perspective and applied technical knowledge into the classroom as a part-time adjunct faculty member.";
 
 export type companyName = "Best Buy" | "Elizabethtown College" | "Southern New Hampshire University" | "The Home Depot" | "WebstaurantStore"
 
