@@ -10,19 +10,19 @@ export const certificationRibbon: certificationRibbonType[] = [
         name: "Certified ScrumMaster",
         altText: "CSM Logo",
         logo: "/static/resume/cert-csm.svg",
-        link: "https://bcert.me/bc/html/show-badge.html?b=vhkdzsmg"
+        link: "https://bcert.me/svhkdzsmg"
     },
     {
         name: "Advanced Certified ScrumMaster",
         altText: "A-CSM Logo",
         logo: "/static/resume/cert-acsm.svg",
-        link: "https://bcert.me/bc/html/show-badge.html?b=sdaeiqcc"
+        link: "https://bcert.me/ssdaeiqcc"
     },
     {
-        name: "Certified Agile Leader (CAL-E)",
-        altText: "CAL-E Logo",
-        logo: "/static/resume/cert-cal-e.svg",
-        link: "https://bcert.me/svroceohe"
+        name: "Certified Agile Leader (CAL-1)",
+        altText: "CAL-1 Logo",
+        logo: "/static/resume/cert-cal1.svg",
+        link: "https://bcert.me/sgtwmqihm"
     },
     {
         name: "CompTIA A+",

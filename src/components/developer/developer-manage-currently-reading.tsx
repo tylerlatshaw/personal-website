@@ -386,7 +386,7 @@ export default function ManageCurrentlyReading() {
               >
                 <span className="flex items-center">
                   <>
-                    I&apos;m Finised&nbsp;<Done className="text-lg flex items-center" />
+                    I&apos;m Finished&nbsp;<Done className="text-lg flex items-center" />
                   </>
                 </span>
               </Button>
