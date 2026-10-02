@@ -25,6 +25,12 @@ export const certificationRibbon: certificationRibbonType[] = [
         link: "https://bcert.me/sgtwmqihm"
     },
     {
+        name: "Microsoft Office Specialist: Excel Associate",
+        altText: "MOS Excel Associate Logo",
+        logo: "/static/resume/cert-mos-excel.png",
+        link: "https://www.credly.com/badges/6e49753c-09d4-403d-ba7f-2df926d3d6e8"
+    },
+    {
         name: "CompTIA A+",
         altText: "CompTIA A+ Logo",
         logo: "/static/resume/cert-comptia.svg",
